@@ -4,6 +4,12 @@
  */
 package com.mycompany.officefurniturecompany;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -54,11 +60,37 @@ public class Basket implements Serializable {
          }   
     }
     
-    public void saveBasket(){
-        
+    public void saveBasket(String FileName){
+        try{
+            FileOutputStream fileOut = new FileOutputStream(FileName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            
+            out.writeObject(this);
+            out.close();
+            fileOut.close();  
+        }catch(FileNotFoundException e){
+            System.out.println("that is not a valid file name");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
-    public void loadBAsket(){
+    public Basket loadBAsket(String FileName){
+        Basket b = null;
         
+        try{
+            FileInputStream fileIn = new FileInputStream(FileName);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            b = (Basket)in.readObject();
+            in.close();
+            fileIn.close();
+        }catch(FileNotFoundException e){
+            System.out.println("invalid file name");
+        }catch(IOException e){
+            e.printStackTrace();
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return b;
     }
 }
