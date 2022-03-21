@@ -8,7 +8,7 @@ package com.mycompany.officefurniturecompany;
  *
  * @author thoma
  */
-public class Desk extends Furniture {
+public class Desk extends Furniture  {
     private final int HEIGHT = 80;
     private int width;
     private int depth;

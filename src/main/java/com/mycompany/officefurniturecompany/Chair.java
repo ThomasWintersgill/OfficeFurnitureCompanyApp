@@ -12,6 +12,10 @@ public class Chair extends Furniture {
     private boolean hasArmrests;
     private final int ARMREST_UNITS = 250;
     private final int CHAIR_UNITS = 1625;
+    
+    public Chair(){
+        
+    }
 
     public Chair(boolean hasArmrests, int IdNumber, WoodType typeOfWood, int quantity, String image) {
         super(IdNumber, typeOfWood, quantity, image);
@@ -41,9 +45,5 @@ public class Chair extends Furniture {
 
     }
 
-    
-    
-    
-    
-    
+
 }

@@ -10,12 +10,16 @@ import java.io.Serializable;
  *
  * @author thoma
  */
-public abstract class Furniture implements Serializable{
+public abstract class Furniture implements Serializable, Comparable<Furniture>{
     protected int IdNumber;
     protected WoodType typeOfWood;
     protected int itemPrice;
     protected int quantity;
     protected String image;
+    
+    public Furniture(){
+        
+    }
 
     public Furniture(int IdNumber, WoodType typeOfWood, int quantity, String image) {
         this.IdNumber = IdNumber;
@@ -49,7 +53,7 @@ public abstract class Furniture implements Serializable{
         this.typeOfWood = typeOfWood;
     }
 
-    public double getItemPrice() {
+    public int getItemPrice() {
         return itemPrice;
     }
 
@@ -77,8 +81,17 @@ public abstract class Furniture implements Serializable{
     public String toString() {
         return "Furniture{" + "IdNumber=" + IdNumber + ", typeOfWood=" + typeOfWood + ", itemPrice=" + itemPrice + ", quantity=" + quantity + ", image=" + image + " ,";
     }
+
+    @Override
+    public int compareTo(Furniture other) {
+        return itemPrice - other.getItemPrice();
+        
+    }
+
     
+        
+        
+    }
     
-    
-    
-}
+ 
+

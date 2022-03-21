@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -44,12 +45,16 @@ public class Basket implements Serializable {
         for(int i =0; i < Basket.size(); i++){
             Furniture furniture = Basket.get(i);
             totalPrice += furniture.getItemPrice();
+            
         }
-        return totalPrice;
+        return totalPrice /100;
     }
     
+    //only prints the to string method at the moment
     public void createSummary(){
-        
+        Collections.sort(Basket);
+        this.printBasket();
+  
     }
     
     //just for testing purposes, but the create summary will be similar

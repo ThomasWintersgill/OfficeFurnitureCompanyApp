@@ -36,7 +36,8 @@ public class Table extends Furniture {
     
     public int calculatePrice(){
         int numberOfUnits = this.diameter * this.diameter;
-        this.itemPrice = (numberOfUnits * typeOfWood.getPrice()) + baseType.getPrice();
+        itemPrice = (numberOfUnits * typeOfWood.getPrice()) + baseType.getPrice();
+        this.itemPrice = itemPrice * quantity;
         
         return itemPrice;
     }
