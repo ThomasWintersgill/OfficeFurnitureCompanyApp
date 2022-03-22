@@ -37,30 +37,6 @@ public class Tester {
 //       
 
     
-         Table table = new Table(baseType.CHROME, 50, 5000, WoodType.OAK, 1, "str");
-         Table tableTwo = new Table(baseType.CHROME, 50, 5000, WoodType.OAK, 2, "str");
-         Table tableThree = new Table(baseType.CHROME, 50, 5000, WoodType.OAK, 3, "str");
-         Table tableFour = new Table(baseType.CHROME, 50, 5000, WoodType.WALNUT, 4, "str");
-         System.out.println(table.calculatePrice());
-         System.out.println(tableTwo.calculatePrice());
-         System.out.println(tableThree.calculatePrice());
-         System.out.println(tableFour.calculatePrice());
-         
-         
-         Basket basket = new Basket();
-         basket.addToBasket(table);
-         
-         
-         basket.addToBasket(tableFour);
-         basket.addToBasket(tableTwo);
-         basket.addToBasket(tableThree);
-         //basket.saveBasket("basket.dat");
-         // create a second basket object from the file
-         //Basket basketTwo = basket.loadBAsket("basket.dat");
-         
-         
-         basket.printBasket();
-         basket.createSummary();
          
          //basketTwo.printBasket();
          //int total = basket.calculateTotal();

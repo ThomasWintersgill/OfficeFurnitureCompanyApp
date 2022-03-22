@@ -17,7 +17,7 @@ public class Chair extends Furniture {
         
     }
 
-    public Chair(boolean hasArmrests, int IdNumber, WoodType typeOfWood, int quantity, String image) {
+    public Chair(boolean hasArmrests, String IdNumber, WoodType typeOfWood, int quantity, String image) {
         super(IdNumber, typeOfWood, quantity, image);
         this.hasArmrests = hasArmrests;
     }
@@ -43,6 +43,11 @@ public class Chair extends Furniture {
     public String toString() {
         return super.toString() + "hasArmrests=" + hasArmrests;
 
+    }
+
+    @Override
+    protected void calculateprice() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 

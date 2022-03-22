@@ -12,7 +12,7 @@ public class Table extends Furniture {
     private baseType baseType;
     private int diameter;
 
-    public Table(baseType baseType, int diameter, int IdNumber, WoodType typeOfWood, int quantity, String image) {
+    public Table(baseType baseType, int diameter, String IdNumber, WoodType typeOfWood, int quantity, String image) {
         super(IdNumber, typeOfWood, quantity, image);
         this.baseType = baseType;
         this.diameter = diameter;
@@ -45,6 +45,11 @@ public class Table extends Furniture {
     @Override
     public String toString() {
         return super.toString() + "baseType=" + baseType + ", diameter=" + diameter + '}';
+    }
+
+    @Override
+    protected void calculateprice() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

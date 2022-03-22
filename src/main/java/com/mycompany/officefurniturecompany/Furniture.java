@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author thoma
  */
 public abstract class Furniture implements Serializable, Comparable<Furniture>{
-    protected int IdNumber;
+    protected String IdNumber;
     protected WoodType typeOfWood;
     protected int itemPrice;
     protected int quantity;
@@ -21,27 +21,21 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
         
     }
 
-    public Furniture(int IdNumber, WoodType typeOfWood, int quantity, String image) {
+    public Furniture(String IdNumber, WoodType typeOfWood, int quantity, String image) {
         this.IdNumber = IdNumber;
         this.typeOfWood = typeOfWood;
         this.quantity = quantity;
         this.image = image;
     }
+   
     
+    protected abstract void calculateprice();
 
-    protected void calculateNoUnits(){
-        
-    }
-    
-    protected void calculateprice(){
-        
-    }
-
-    public int getIdNumber() {
+    public String getIdNumber() {
         return IdNumber;
     }
 
-    public void setIdNumber(int IdNumber) {
+    public void setIdNumber(String IdNumber) {
         this.IdNumber = IdNumber;
     }
 

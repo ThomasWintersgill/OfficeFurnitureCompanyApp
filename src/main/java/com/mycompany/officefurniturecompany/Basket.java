@@ -29,6 +29,7 @@ public class Basket implements Serializable {
     
     public void addToBasket(Furniture furniture){
         Basket.add(furniture);
+        
    
     }
     
