@@ -12,16 +12,19 @@ public class Chair extends Furniture {
     private boolean hasArmrests;
     private final int ARMREST_UNITS = 250;
     private final int CHAIR_UNITS = 1625;
+    private String image = "chair.jpg";
     
     public Chair(){
         
     }
 
-    public Chair(boolean hasArmrests, String IdNumber, WoodType typeOfWood, int quantity, String image) {
-        super(IdNumber, typeOfWood, quantity, image);
+    public Chair(boolean hasArmrests, String IdNumber, WoodType typeOfWood, int quantity) {
+        super(IdNumber, typeOfWood, quantity);
         this.hasArmrests = hasArmrests;
+        
     }
     
+    //this needs copying into the override calcprice method
     public int calculatePrice(){
         itemPrice = this.typeOfWood.getPrice() * CHAIR_UNITS;
         if(this.hasArmrests){
@@ -49,6 +52,8 @@ public class Chair extends Furniture {
     protected void calculateprice() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
 
 
 }
