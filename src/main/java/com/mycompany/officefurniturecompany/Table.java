@@ -12,8 +12,8 @@ public class Table extends Furniture {
     private baseType baseType;
     private int diameter;
 
-    public Table(baseType baseType, int diameter, String IdNumber, WoodType typeOfWood, int quantity, String image) {
-        super(IdNumber, typeOfWood, quantity, image);
+    public Table(baseType baseType, int diameter, String IdNumber, WoodType typeOfWood, int quantity) {
+        super(IdNumber, typeOfWood, quantity);
         this.baseType = baseType;
         this.diameter = diameter;
     }

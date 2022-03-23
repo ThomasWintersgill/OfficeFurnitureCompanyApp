@@ -21,11 +21,11 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
         
     }
 
-    public Furniture(String IdNumber, WoodType typeOfWood, int quantity, String image) {
+    public Furniture(String IdNumber, WoodType typeOfWood, int quantity) {
         this.IdNumber = IdNumber;
         this.typeOfWood = typeOfWood;
         this.quantity = quantity;
-        this.image = image;
+        
     }
    
     
