@@ -6,6 +6,7 @@ package com.mycompany.officefurniturecompany;
 
 import java.io.Serializable;
 
+
 /**
  *
  * @author thoma
@@ -29,7 +30,7 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
     }
    
     
-    protected abstract void calculateprice();
+    public abstract int calculatePrice();
 
     public String getIdNumber() {
         return IdNumber;
@@ -62,15 +63,11 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public String getImage() {
+    
+    public String getImage(){
         return image;
     }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
+ 
     @Override
     public String toString() {
         return "Furniture{" + "IdNumber=" + IdNumber + ", typeOfWood=" + typeOfWood + ", itemPrice=" + itemPrice + ", quantity=" + quantity + ", image=" + image + " ,";
@@ -81,6 +78,7 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
         return itemPrice - other.getItemPrice();
         
     }
+    
 
     
         

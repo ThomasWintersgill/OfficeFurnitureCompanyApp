@@ -34,22 +34,19 @@ public class Table extends Furniture {
         this.diameter = diameter;
     }
     
-    public int calculatePrice(){
-        int numberOfUnits = this.diameter * this.diameter;
-        itemPrice = (numberOfUnits * typeOfWood.getPrice()) + baseType.getPrice();
-        this.itemPrice = itemPrice * quantity;
-        
-        return itemPrice;
-    }
-
     @Override
     public String toString() {
         return super.toString() + "baseType=" + baseType + ", diameter=" + diameter + '}';
     }
 
     @Override
-    protected void calculateprice() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int calculatePrice() {
+         int numberOfUnits = this.diameter * this.diameter;
+        itemPrice = (numberOfUnits * typeOfWood.getPrice()) + baseType.getPrice();
+        this.itemPrice = itemPrice * quantity;
+        
+        return itemPrice;
+        
     }
     
     

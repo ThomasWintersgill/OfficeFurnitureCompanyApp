@@ -9,6 +9,8 @@ import com.mycompany.officefurniturecompany.Chair;
 import com.mycompany.officefurniturecompany.WoodType;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
+import javax.swing.DefaultListModel;
+import javax.swing.Renderer;
 
 /**
  *
@@ -17,6 +19,7 @@ import java.util.HashSet;
 public class Main extends javax.swing.JFrame {
     private Basket basket = new Basket();
     private HashSet<String> idNumbers = new HashSet();
+    private DefaultListModel dm = new DefaultListModel();
 
     /**
      * Creates new form Main
@@ -41,22 +44,36 @@ public class Main extends javax.swing.JFrame {
         addTableButton = new javax.swing.JButton();
         addDeskButton = new javax.swing.JButton();
         showSummaryButton = new javax.swing.JButton();
+        basketButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         basketPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        basketList = new javax.swing.JList<>();
         deskFormPanel = new javax.swing.JPanel();
         tableFormPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        tableIdField = new javax.swing.JFormattedTextField();
+        tableTypeOfWoodField = new javax.swing.JComboBox<>();
+        tableQuantityField = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tableBaseTypeField = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jTextField1 = new javax.swing.JTextField();
         chairFormPanel = new javax.swing.JPanel();
         chairPicPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         addChairtoBasketBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        typeOfWoodField = new javax.swing.JComboBox<>();
+        chairTypeOfWoodField = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         armRestsBox = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         chairQuantityField = new javax.swing.JComboBox<>();
-        idField = new javax.swing.JFormattedTextField();
+        chairIdField = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -110,6 +127,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        basketButton.setText("jButton1");
+        basketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                basketButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
@@ -122,6 +146,10 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(addChairButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addDeskButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
+            .addGroup(buttonPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(basketButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,20 +162,27 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(addDeskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(showSummaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(basketButton)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jPanel8.add(buttonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 150, 760));
+
+        basketList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        basketList.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        basketList.setVisibleRowCount(-1);
+        jScrollPane1.setViewportView(basketList);
 
         javax.swing.GroupLayout basketPanelLayout = new javax.swing.GroupLayout(basketPanel);
         basketPanel.setLayout(basketPanelLayout);
         basketPanelLayout.setHorizontalGroup(
             basketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 799, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         );
         basketPanelLayout.setVerticalGroup(
             basketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab1", basketPanel);
@@ -156,52 +191,147 @@ public class Main extends javax.swing.JFrame {
         deskFormPanel.setLayout(deskFormPanelLayout);
         deskFormPanelLayout.setHorizontalGroup(
             deskFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 799, Short.MAX_VALUE)
+            .addGap(0, 820, Short.MAX_VALUE)
         );
         deskFormPanelLayout.setVerticalGroup(
             deskFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 647, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab3", deskFormPanel);
 
-        tableFormPanel.setBackground(new java.awt.Color(153, 255, 255));
+        tableFormPanel.setBackground(new java.awt.Color(255, 255, 153));
 
-        jLabel5.setBackground(new java.awt.Color(255, 102, 51));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 153, 255));
-        jLabel5.setText("jLabel5");
+        jPanel1.setPreferredSize(new java.awt.Dimension(329, 280));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 329, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+
+        try {
+            tableIdField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tableIdField.setToolTipText("Enter the 4 digit product ID  ");
+
+        tableTypeOfWoodField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OAK", "WALNUT" }));
+        tableTypeOfWoodField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tableTypeOfWoodFieldActionPerformed(evt);
+            }
+        });
+
+        tableQuantityField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
+        jLabel5.setBackground(new java.awt.Color(0, 0, 204));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("ID Number(####):");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Type of wood:");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("Quantity:");
+
+        tableBaseTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHROME", "WOODEN" }));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setText("Base Type:");
+
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout tableFormPanelLayout = new javax.swing.GroupLayout(tableFormPanel);
         tableFormPanel.setLayout(tableFormPanelLayout);
         tableFormPanelLayout.setHorizontalGroup(
             tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableFormPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tableTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tableFormPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tableIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tableQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableFormPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144))))
         );
         tableFormPanelLayout.setVerticalGroup(
             tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableFormPanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(53, 53, 53)
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tableIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tableQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(tableTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab4", tableFormPanel);
 
         chairFormPanel.setBackground(new java.awt.Color(204, 204, 255));
 
+        chairPicPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout chairPicPanelLayout = new javax.swing.GroupLayout(chairPicPanel);
         chairPicPanel.setLayout(chairPicPanelLayout);
         chairPicPanelLayout.setHorizontalGroup(
             chairPicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
         );
         chairPicPanelLayout.setVerticalGroup(
             chairPicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 204));
@@ -209,6 +339,7 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("ID Number(####):");
 
         addChairtoBasketBtn.setText("Add to basket");
+        addChairtoBasketBtn.setToolTipText("Click to add the current item(s) to the basket");
         addChairtoBasketBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addChairtoBasketBtnActionPerformed(evt);
@@ -218,12 +349,12 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Type of wood:");
 
-        typeOfWoodField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OAK", "WALNUT" }));
+        chairTypeOfWoodField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OAK", "WALNUT" }));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Armrests");
 
-        armRestsBox.setText("Tick box if armrests are required");
+        armRestsBox.setToolTipText("Check box only if armrests are required");
         armRestsBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 armRestsBoxActionPerformed(evt);
@@ -236,10 +367,11 @@ public class Main extends javax.swing.JFrame {
         chairQuantityField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         try {
-            idField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+            chairIdField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        chairIdField.setToolTipText("Enter the 4 digit product ID  ");
 
         javax.swing.GroupLayout chairFormPanelLayout = new javax.swing.GroupLayout(chairFormPanel);
         chairFormPanel.setLayout(chairFormPanelLayout);
@@ -248,32 +380,32 @@ public class Main extends javax.swing.JFrame {
             .addGroup(chairFormPanelLayout.createSequentialGroup()
                 .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chairFormPanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(chairPicPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(chairFormPanelLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addChairtoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(chairFormPanelLayout.createSequentialGroup()
-                                    .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(chairFormPanelLayout.createSequentialGroup()
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(typeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(chairFormPanelLayout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(36, 36, 36)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(chairQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(chairFormPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(40, 40, 40)
-                                    .addComponent(armRestsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(147, Short.MAX_VALUE))
+                        .addComponent(addChairtoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(chairFormPanelLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(chairFormPanelLayout.createSequentialGroup()
+                                .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(chairFormPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(chairTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(chairFormPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(chairIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(chairQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(chairPicPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(chairFormPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(armRestsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(202, 202, 202)))))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         chairFormPanelLayout.setVerticalGroup(
             chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,16 +417,16 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(chairQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chairIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(typeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chairTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(armRestsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(addChairtoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -318,38 +450,38 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_addChairButtonActionPerformed
 
     private void addChairtoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addChairtoBasketBtnActionPerformed
-        // TODO add your handling code here:
-        //returns true if idfield is not the required character length.
-        //this if statmenent needs moving down as once an item is created it can be left blank for the next try
-        if(idField.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "ID field must be 4 numbers");
-        //need to validate the id number, add it to the hash set and make sure its not already in hash set. 
-        
-            //needed these next few lines to get the string from the combo box and convert to enum, as would not work with enum value in combo box
-            String wood = typeOfWoodField.getItemAt(typeOfWoodField.getSelectedIndex());
-            WoodType woodEnum = WoodType.valueOf(wood);
-            boolean armRest = armRestsBox.isSelected();
-            
-            
-            String idNumber = idField.getText();
-            if(idNumbers.contains(idField.getText())){
-                JOptionPane.showMessageDialog(rootPane, "there is already a furniture item with that ID number");
+       //this currently works but not if the box is left blank before the first press
+        if(!chairIdField.getText().isBlank()){
+            if(idNumbers.contains(chairIdField.getText())){
+                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
             }else{
-                idNumbers.add(idNumber);
+                idNumbers.add(chairIdField.getText());
+           
+                String idNumber = chairIdField.getText();
                 int quantity = chairQuantityField.getSelectedIndex()+1;
+                boolean armRest = armRestsBox.isSelected();
+                WoodType wood = WoodType.valueOf(chairTypeOfWoodField.getItemAt(chairTypeOfWoodField.getSelectedIndex()));
 
-                Chair chair = new Chair(armRest, idNumber, woodEnum, quantity, "image");
+
+
+                Chair chair = new Chair("chair.jpg", armRest, idNumber, wood, quantity);
                 chair.calculatePrice();
                 basket.addToBasket(chair);
-                //basket.addToBasket(new Chair(armRest, idNumber, woodEnum, quantity, "image"));
                 System.out.println("the following items are in the basket");
+                //could do with some sort of feedback here to let user know that the item has been added to basket
                 basket.createSummary();
-                
+                dm.addElement(chair);
+                System.out.println(chair.getImage());
             }
-            
+                
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "ID field must be 4 digits long");
         }
+            
+            
         
         
+   
     }//GEN-LAST:event_addChairtoBasketBtnActionPerformed
 
     private void armRestsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_armRestsBoxActionPerformed
@@ -366,6 +498,19 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_addDeskButtonActionPerformed
+
+    private void basketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basketButtonActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
+        basketList.setCellRenderer(new basketRenderer());
+        basketList.setModel(dm);
+        
+        
+    }//GEN-LAST:event_basketButtonActionPerformed
+
+    private void tableTypeOfWoodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableTypeOfWoodFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableTypeOfWoodFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,6 +542,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Main().setVisible(true);
             }
         });
@@ -408,23 +554,37 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton addDeskButton;
     private javax.swing.JButton addTableButton;
     private javax.swing.JCheckBox armRestsBox;
+    private javax.swing.JButton basketButton;
+    private javax.swing.JList<String> basketList;
     private javax.swing.JPanel basketPanel;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel chairFormPanel;
+    private javax.swing.JFormattedTextField chairIdField;
     private javax.swing.JPanel chairPicPanel;
     private javax.swing.JComboBox<String> chairQuantityField;
+    private javax.swing.JComboBox<String> chairTypeOfWoodField;
     private javax.swing.JPanel deskFormPanel;
-    private javax.swing.JFormattedTextField idField;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton showSummaryButton;
+    private javax.swing.JComboBox<String> tableBaseTypeField;
     private javax.swing.JPanel tableFormPanel;
-    private javax.swing.JComboBox<String> typeOfWoodField;
+    private javax.swing.JFormattedTextField tableIdField;
+    private javax.swing.JComboBox<String> tableQuantityField;
+    private javax.swing.JComboBox<String> tableTypeOfWoodField;
     // End of variables declaration//GEN-END:variables
 }

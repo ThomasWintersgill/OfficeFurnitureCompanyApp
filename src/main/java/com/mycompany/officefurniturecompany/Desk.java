@@ -14,8 +14,8 @@ public class Desk extends Furniture  {
     private int depth;
     private numberDeskDrawers numberOfDrawers;
 
-    public Desk(int width, int depth, numberDeskDrawers numberOfDrawers, String IdNumber, WoodType typeOfWood, int quantity, String image) {
-        super(IdNumber, typeOfWood, quantity, image);
+    public Desk(int width, int depth, numberDeskDrawers numberOfDrawers, String IdNumber, WoodType typeOfWood, int quantity) {
+        super(IdNumber, typeOfWood, quantity);
         
         this.width = width;
         this.depth = depth;
@@ -56,21 +56,18 @@ public class Desk extends Furniture  {
         return 0;
     }
     
-    public int calculatePrice(){
-        
-        itemPrice = ((HEIGHT + width + depth) * 12) + (depth * width) * typeOfWood.getPrice() + (numberOfDrawers.getValue() * 850);
-        
-        return itemPrice;
-    }
-
+   
     @Override
     public String toString() {
         return super.toString() +  "HEIGHT=" + HEIGHT + ", width=" + width + ", depth=" + depth + ", numberOfDrawers=" + numberOfDrawers + '}';
     }
 
     @Override
-    protected void calculateprice() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int calculatePrice() {
+        itemPrice = ((HEIGHT + width + depth) * 12) + (depth * width) * typeOfWood.getPrice() + (numberOfDrawers.getValue() * 850);
+        
+        return itemPrice;
+        
     }
     
     
