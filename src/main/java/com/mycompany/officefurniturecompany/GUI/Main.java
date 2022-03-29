@@ -6,11 +6,12 @@ package com.mycompany.officefurniturecompany.GUI;
 
 import com.mycompany.officefurniturecompany.Basket;
 import com.mycompany.officefurniturecompany.Chair;
+import com.mycompany.officefurniturecompany.Table;
 import com.mycompany.officefurniturecompany.WoodType;
+import com.mycompany.officefurniturecompany.baseType;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
 import javax.swing.DefaultListModel;
-import javax.swing.Renderer;
 
 /**
  *
@@ -60,8 +61,9 @@ public class Main extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         tableBaseTypeField = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
+        tableDiameterField = new javax.swing.JFormattedTextField();
+        addTabletoBasketBtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         chairFormPanel = new javax.swing.JPanel();
         chairPicPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -239,16 +241,25 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setText("Type of wood:");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("Quantity:");
+        jLabel8.setText("Diameter(CM):");
 
         tableBaseTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHROME", "WOODEN" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Base Type:");
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
+        tableDiameterField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
 
-        jTextField1.setText("jTextField1");
+        addTabletoBasketBtn.setText("Add to basket");
+        addTabletoBasketBtn.setToolTipText("Click to add the current item(s) to the basket");
+        addTabletoBasketBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTabletoBasketBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setText("Quantity:");
 
         javax.swing.GroupLayout tableFormPanelLayout = new javax.swing.GroupLayout(tableFormPanel);
         tableFormPanel.setLayout(tableFormPanelLayout);
@@ -256,13 +267,10 @@ public class Main extends javax.swing.JFrame {
             tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableFormPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(tableFormPanelLayout.createSequentialGroup()
-                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tableFormPanelLayout.createSequentialGroup()
                         .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tableTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,36 +279,29 @@ public class Main extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tableIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tableFormPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tableQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableFormPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144))))
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tableDiameterField, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(tableQuantityField, javax.swing.GroupLayout.Alignment.TRAILING, 0, 148, Short.MAX_VALUE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         tableFormPanelLayout.setVerticalGroup(
             tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableFormPanelLayout.createSequentialGroup()
-                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tableFormPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tableFormPanelLayout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tableQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel10))
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tableFormPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -308,13 +309,17 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(tableTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(tableFormPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tableDiameterField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))))
                 .addGap(19, 19, 19)
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         jTabbedPane1.addTab("tab4", tableFormPanel);
@@ -423,7 +428,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(chairTypeOfWoodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(armRestsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
@@ -463,7 +468,7 @@ public class Main extends javax.swing.JFrame {
                 WoodType wood = WoodType.valueOf(chairTypeOfWoodField.getItemAt(chairTypeOfWoodField.getSelectedIndex()));
 
 
-
+                //would like to get this so that the chair image string is an attribute of the chair class?
                 Chair chair = new Chair("chair.jpg", armRest, idNumber, wood, quantity);
                 chair.calculatePrice();
                 basket.addToBasket(chair);
@@ -475,7 +480,7 @@ public class Main extends javax.swing.JFrame {
             }
                 
         }else{
-            JOptionPane.showMessageDialog(rootPane, "ID field must be 4 digits long");
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
         }
             
             
@@ -511,6 +516,52 @@ public class Main extends javax.swing.JFrame {
     private void tableTypeOfWoodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableTypeOfWoodFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tableTypeOfWoodFieldActionPerformed
+
+    private void addTabletoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTabletoBasketBtnActionPerformed
+        // TODO add your handling code here:
+        int diameter;
+        
+        //to fix this control flow, just do if any isblankd then show dialog, take off the !
+        if(tableIdField.getText().isBlank() || tableDiameterField.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
+            
+            
+        }else{
+            if(idNumbers.contains(tableIdField.getText())){
+                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
+            }else{
+                //think this needs to be in a while
+                try{
+                    
+                    diameter = Integer.parseInt(tableDiameterField.getText());
+                    if (diameter < 50 || diameter > 500){
+                        JOptionPane.showMessageDialog(rootPane, "diameter must be between 50cm to 500cm");
+                    } else {
+                         diameter = diameter;
+                    }
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(rootPane, "diameter field must be a number");
+                }
+                
+                String idNumber = tableIdField.getText();
+                int quantity = tableQuantityField.getSelectedIndex()+1;
+                WoodType wood = WoodType.valueOf(tableTypeOfWoodField.getItemAt(tableTypeOfWoodField.getSelectedIndex()));
+                baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
+                
+                Table table = new Table("table.jpg", base, diameter, idNumber, wood, quantity);
+                dm.addElement(table);
+                idNumbers.add(tableIdField.getText());
+                table.calculatePrice();
+                basket.addToBasket(table);
+                System.out.println("the following items are in the basket");
+                
+                basket.createSummary();
+                
+                
+            }
+            
+        }
+    }//GEN-LAST:event_addTabletoBasketBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -553,6 +604,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton addChairtoBasketBtn;
     private javax.swing.JButton addDeskButton;
     private javax.swing.JButton addTableButton;
+    private javax.swing.JButton addTabletoBasketBtn;
     private javax.swing.JCheckBox armRestsBox;
     private javax.swing.JButton basketButton;
     private javax.swing.JList<String> basketList;
@@ -564,8 +616,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> chairQuantityField;
     private javax.swing.JComboBox<String> chairTypeOfWoodField;
     private javax.swing.JPanel deskFormPanel;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -579,9 +631,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton showSummaryButton;
     private javax.swing.JComboBox<String> tableBaseTypeField;
+    private javax.swing.JFormattedTextField tableDiameterField;
     private javax.swing.JPanel tableFormPanel;
     private javax.swing.JFormattedTextField tableIdField;
     private javax.swing.JComboBox<String> tableQuantityField;

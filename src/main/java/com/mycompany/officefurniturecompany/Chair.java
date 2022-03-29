@@ -19,6 +19,8 @@ public class Chair extends Furniture {
     public Chair(){
         
     }
+    
+    
 
     public Chair(String image, boolean hasArmrests, String IdNumber, WoodType typeOfWood, int quantity) {
         super(IdNumber, typeOfWood, quantity);
