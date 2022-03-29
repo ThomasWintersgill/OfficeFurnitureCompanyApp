@@ -64,6 +64,7 @@ public class Main extends javax.swing.JFrame {
         tableDiameterField = new javax.swing.JFormattedTextField();
         addTabletoBasketBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         chairFormPanel = new javax.swing.JPanel();
         chairPicPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -261,6 +262,13 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("Quantity:");
 
+        jFormattedTextField1.setText("jFormattedTextField1");
+        jFormattedTextField1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField1PropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout tableFormPanelLayout = new javax.swing.GroupLayout(tableFormPanel);
         tableFormPanel.setLayout(tableFormPanelLayout);
         tableFormPanelLayout.setHorizontalGroup(
@@ -283,20 +291,32 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tableDiameterField, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(tableQuantityField, javax.swing.GroupLayout.Alignment.TRAILING, 0, 148, Short.MAX_VALUE)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tableDiameterField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(tableQuantityField, javax.swing.GroupLayout.Alignment.TRAILING, 0, 148, Short.MAX_VALUE)))
+                        .addContainerGap(137, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableFormPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
         );
         tableFormPanelLayout.setVerticalGroup(
             tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableFormPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableFormPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableFormPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)))
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tableQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -469,7 +489,9 @@ public class Main extends javax.swing.JFrame {
 
 
                 //would like to get this so that the chair image string is an attribute of the chair class?
+                
                 Chair chair = new Chair("chair.jpg", armRest, idNumber, wood, quantity);
+                chair.getImage();
                 chair.calculatePrice();
                 basket.addToBasket(chair);
                 System.out.println("the following items are in the basket");
@@ -519,9 +541,9 @@ public class Main extends javax.swing.JFrame {
 
     private void addTabletoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTabletoBasketBtnActionPerformed
         // TODO add your handling code here:
-        int diameter;
+        int diameter = 0;
         
-        //to fix this control flow, just do if any isblankd then show dialog, take off the !
+        
         if(tableIdField.getText().isBlank() || tableDiameterField.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
             
@@ -533,11 +555,12 @@ public class Main extends javax.swing.JFrame {
                 //think this needs to be in a while
                 try{
                     
-                    diameter = Integer.parseInt(tableDiameterField.getText());
-                    if (diameter < 50 || diameter > 500){
+                    
+                    int dm = Integer.parseInt(tableDiameterField.getText());
+                    if (dm < 50 || dm > 500){
                         JOptionPane.showMessageDialog(rootPane, "diameter must be between 50cm to 500cm");
                     } else {
-                         diameter = diameter;
+                         diameter = dm;
                     }
                 }catch(NumberFormatException e){
                     JOptionPane.showMessageDialog(rootPane, "diameter field must be a number");
@@ -562,6 +585,18 @@ public class Main extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_addTabletoBasketBtnActionPerformed
+
+    private void jFormattedTextField1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField1PropertyChange
+        
+        if (jFormattedTextField1.getValue() == null)
+            return;
+        
+        int newVal = Integer.parseInt(jFormattedTextField1.getValue().toString());
+        System.out.println(newVal);
+        if (newVal < 50) {
+            jFormattedTextField1.setValue(50);
+        }
+    }//GEN-LAST:event_jFormattedTextField1PropertyChange
 
     /**
      * @param args the command line arguments
@@ -616,6 +651,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> chairQuantityField;
     private javax.swing.JComboBox<String> chairTypeOfWoodField;
     private javax.swing.JPanel deskFormPanel;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
