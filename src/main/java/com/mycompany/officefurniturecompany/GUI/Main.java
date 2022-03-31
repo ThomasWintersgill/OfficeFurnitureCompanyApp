@@ -6,9 +6,7 @@ package com.mycompany.officefurniturecompany.GUI;
 
 import com.mycompany.officefurniturecompany.Basket;
 import com.mycompany.officefurniturecompany.Chair;
-import com.mycompany.officefurniturecompany.Table;
 import com.mycompany.officefurniturecompany.WoodType;
-import com.mycompany.officefurniturecompany.baseType;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
 import javax.swing.DefaultListModel;
@@ -63,7 +61,7 @@ public class Main extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         addTabletoBasketBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        tableDiameterField = new javax.swing.JTextField();
         chairFormPanel = new javax.swing.JPanel();
         chairPicPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -259,13 +257,6 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("Quantity:");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
-        jFormattedTextField1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jFormattedTextField1PropertyChange(evt);
-            }
-        });
-
         javax.swing.GroupLayout tableFormPanelLayout = new javax.swing.GroupLayout(tableFormPanel);
         tableFormPanel.setLayout(tableFormPanelLayout);
         tableFormPanelLayout.setHorizontalGroup(
@@ -290,9 +281,9 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                     .addComponent(tableQuantityField, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(tableDiameterField))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         tableFormPanelLayout.setVerticalGroup(
@@ -316,7 +307,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tableDiameterField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19)
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,11 +516,15 @@ public class Main extends javax.swing.JFrame {
 
     private void addTabletoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTabletoBasketBtnActionPerformed
         
-//        
+        
+        tableDiameterField.setInputVerifier(new diameterVerfifier());
 
-            if(tableIdField.getText().isBlank() || tableDiameterField.getText().isBlank()){
+        if(tableIdField.getText().isBlank() || tableDiameterField.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "please ensure all fields are entered before adding to basket");
+        }else{
+            
                 
-            }
+        }
 //        System.out.println(tableDiameterField.getText());
 //        
 //        
@@ -559,18 +554,6 @@ public class Main extends javax.swing.JFrame {
                 
          
     }//GEN-LAST:event_addTabletoBasketBtnActionPerformed
-
-    private void jFormattedTextField1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField1PropertyChange
-        
-        if (jFormattedTextField1.getValue() == null)
-            return;
-        
-        int newVal = Integer.parseInt(jFormattedTextField1.getValue().toString());
-        System.out.println(newVal);
-        if (newVal < 50) {
-            jFormattedTextField1.setValue(50);
-        }
-    }//GEN-LAST:event_jFormattedTextField1PropertyChange
    
     /**
      * @param args the command line arguments
@@ -598,6 +581,8 @@ public class Main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -625,7 +610,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> chairQuantityField;
     private javax.swing.JComboBox<String> chairTypeOfWoodField;
     private javax.swing.JPanel deskFormPanel;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -643,6 +627,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton showSummaryButton;
     private javax.swing.JComboBox<String> tableBaseTypeField;
+    private javax.swing.JTextField tableDiameterField;
     private javax.swing.JPanel tableFormPanel;
     private javax.swing.JFormattedTextField tableIdField;
     private javax.swing.JComboBox<String> tableQuantityField;
