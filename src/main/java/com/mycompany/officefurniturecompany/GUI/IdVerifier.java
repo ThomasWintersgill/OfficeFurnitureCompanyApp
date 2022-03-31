@@ -11,20 +11,25 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author thomaswintersgill
+ * @author thoma
  */
-public class diameterVerfifier extends InputVerifier{
+public class IdVerifier extends InputVerifier {
+    
+    
 
     @Override
     public boolean verify(JComponent input) {
         String text = ((JTextField) input).getText();
-        try{
-            Integer.parseInt(text);
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(input, "diameter must be a number");
+        
+        if(idNumbers.contains(text)){
+            JOptionPane.showMessageDialog(input, "that id number is already in use");
             return false;
+        }else{
+            idNumbers.add(text);
+            System.out.println(idNumbers);
         }
         return true;
+        
     }
     
 }

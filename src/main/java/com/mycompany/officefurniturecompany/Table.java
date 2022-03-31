@@ -11,8 +11,10 @@ package com.mycompany.officefurniturecompany;
 public class Table extends Furniture {
     private baseType baseType;
     private int diameter;
+    private String image = "table.jpg";
+    
 
-    public Table(String image, baseType baseType, int diameter, String IdNumber, WoodType typeOfWood, int quantity) {
+    public Table( String IdNumber, WoodType typeOfWood, int quantity, baseType baseType, int diameter) {
         super(IdNumber, typeOfWood, quantity);
         this.baseType = baseType;
         this.diameter = diameter;

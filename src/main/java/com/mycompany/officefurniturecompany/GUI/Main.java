@@ -6,7 +6,9 @@ package com.mycompany.officefurniturecompany.GUI;
 
 import com.mycompany.officefurniturecompany.Basket;
 import com.mycompany.officefurniturecompany.Chair;
+import com.mycompany.officefurniturecompany.Table;
 import com.mycompany.officefurniturecompany.WoodType;
+import com.mycompany.officefurniturecompany.baseType;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
 import javax.swing.DefaultListModel;
@@ -18,6 +20,7 @@ import javax.swing.DefaultListModel;
 public class Main extends javax.swing.JFrame {
     private Basket basket = new Basket();
     private HashSet<String> idNumbers = new HashSet();
+    
     private DefaultListModel dm = new DefaultListModel();
 
     /**
@@ -257,6 +260,13 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("Quantity:");
 
+        tableDiameterField.setText("50");
+        tableDiameterField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableDiameterFieldKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tableFormPanelLayout = new javax.swing.GroupLayout(tableFormPanel);
         tableFormPanel.setLayout(tableFormPanelLayout);
         tableFormPanelLayout.setHorizontalGroup(
@@ -463,17 +473,17 @@ public class Main extends javax.swing.JFrame {
                 WoodType wood = WoodType.valueOf(chairTypeOfWoodField.getItemAt(chairTypeOfWoodField.getSelectedIndex()));
 
 
-                //would like to get this so that the chair image string is an attribute of the chair class?
+               
                 
                 Chair chair = new Chair(idNumber, wood, quantity, armRest);
-                chair.getImage();
+                
                 chair.calculatePrice();
                 basket.addToBasket(chair);
                 System.out.println("the following items are in the basket");
                 //could do with some sort of feedback here to let user know that the item has been added to basket
                 basket.createSummary();
                 dm.addElement(chair);
-                System.out.println(chair.getImage());
+                
             }
                 
         }else{
@@ -494,6 +504,10 @@ public class Main extends javax.swing.JFrame {
     private void addTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTableButtonActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(2);
+        tableDiameterField.setInputVerifier(new DiameterVerifier());
+        //tableIdField.setInputVerifier(new IdVerifier());
+        
+        
     }//GEN-LAST:event_addTableButtonActionPerformed
 
     private void addDeskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeskButtonActionPerformed
@@ -503,8 +517,11 @@ public class Main extends javax.swing.JFrame {
 
     private void basketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basketButtonActionPerformed
         // TODO add your handling code here:
+        //show the correct tabbed pane for the basket menu
         jTabbedPane1.setSelectedIndex(0);
+        //create a new basket renderer object
         basketList.setCellRenderer(new basketRenderer());
+        //set the model of the basket list field to be based on the default list model that contains the furniture objects
         basketList.setModel(dm);
         
         
@@ -515,45 +532,41 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_tableTypeOfWoodFieldActionPerformed
 
     private void addTabletoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTabletoBasketBtnActionPerformed
-        
-        
-        tableDiameterField.setInputVerifier(new diameterVerfifier());
-
-        if(tableIdField.getText().isBlank() || tableDiameterField.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "please ensure all fields are entered before adding to basket");
-        }else{
+        if(!tableIdField.getText().isBlank()){
+            if(idNumbers.contains(tableIdField.getText())){
+                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
+            }else{
+                idNumbers.add(tableIdField.getText());
+                
+                String idNumber = tableIdField.getText();
+                int diameter = Integer.valueOf(tableDiameterField.getText());
+                
+                WoodType wood = WoodType.valueOf(tableTypeOfWoodField.getItemAt(tableTypeOfWoodField.getSelectedIndex()));
+                int quantity = tableQuantityField.getSelectedIndex()+1;
+                baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
+                
+                Table table = new Table(idNumber, wood, quantity, base, diameter);
+                table.calculatePrice();
+                basket.addToBasket(table);
+                
+                
+                System.out.println("the following items are in the basket " );
+                basket.createSummary();
+                dm.addElement(table);
+            }
             
-                
+            
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
         }
-//        System.out.println(tableDiameterField.getText());
-//        
-//        
-//        if(tableIdField.getText().isBlank() || tableDiameterField.getText().isBlank()){
-//            JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
-//            
-//            
-//        }else{
-//            if(idNumbers.contains(tableIdField.getText())){
-//                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
-//            }
-//                
-//                String idNumber = tableIdField.getText();
-//                int quantity = tableQuantityField.getSelectedIndex()+1;
-//                WoodType wood = WoodType.valueOf(tableTypeOfWoodField.getItemAt(tableTypeOfWoodField.getSelectedIndex()));
-//                baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
-//                
-//                Table table = new Table("table.jpg", base, diameter, idNumber, wood, quantity);
-//                dm.addElement(table);
-//                idNumbers.add(tableIdField.getText());
-//                table.calculatePrice();
-//                basket.addToBasket(table);
-//                System.out.println("the following items are in the basket");
-//                
-//                basket.createSummary();
-                
                 
          
     }//GEN-LAST:event_addTabletoBasketBtnActionPerformed
+
+    private void tableDiameterFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableDiameterFieldKeyPressed
+        
+                
+    }//GEN-LAST:event_tableDiameterFieldKeyPressed
    
     /**
      * @param args the command line arguments

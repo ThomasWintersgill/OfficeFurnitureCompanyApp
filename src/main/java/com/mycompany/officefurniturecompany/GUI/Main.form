@@ -463,6 +463,12 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tableDiameterField">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="50"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tableDiameterFieldKeyPressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
