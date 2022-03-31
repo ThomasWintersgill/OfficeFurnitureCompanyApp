@@ -24,8 +24,7 @@ public class basketRenderer extends DefaultListCellRenderer implements ListCellR
         
         Furniture furniture = (Furniture) value;
         
-        //String image = furniture.getImage();
-        //ImageIcon icon = new ImageIcon("chair.jpg");
+        
         
         ImageIcon icon = new ImageIcon(furniture.getImage());
         

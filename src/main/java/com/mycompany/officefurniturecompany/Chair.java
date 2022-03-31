@@ -14,6 +14,7 @@ public class Chair extends Furniture {
     private boolean hasArmrests;
     private final int ARMREST_UNITS = 250;
     private final int CHAIR_UNITS = 1625;
+    private String image = "chair.jpg";
     
     
 
@@ -23,10 +24,10 @@ public class Chair extends Furniture {
     
     
 
-    public Chair(String image, boolean hasArmrests, String IdNumber, WoodType typeOfWood, int quantity) {
+    public Chair( String IdNumber, WoodType typeOfWood, int quantity, boolean hasArmrests) {
         super(IdNumber, typeOfWood, quantity);
         this.hasArmrests = hasArmrests;
-        this.image = "chair.jpg";
+        
         
     }
     
