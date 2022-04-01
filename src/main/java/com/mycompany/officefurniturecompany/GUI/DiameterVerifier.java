@@ -26,6 +26,7 @@ public class DiameterVerifier extends InputVerifier{
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(input, "Diameter field must be a number");
+            //(JTextField) input
             return false;
         }
         return true;

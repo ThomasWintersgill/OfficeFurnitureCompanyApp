@@ -37,6 +37,11 @@ public class Table extends Furniture {
     }
     
     @Override
+    public String getImage(){
+        return image;
+    }
+    
+    @Override
     public String toString() {
         return super.toString() + "baseType=" + baseType + ", diameter=" + diameter + '}';
     }

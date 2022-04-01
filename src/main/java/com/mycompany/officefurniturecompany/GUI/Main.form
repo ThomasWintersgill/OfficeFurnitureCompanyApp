@@ -282,10 +282,13 @@
                               </Group>
                           </Group>
                           <EmptySpace pref="22" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="addTabletoBasketBtn" pref="159" max="32767" attributes="0"/>
-                              <Component id="tableQuantityField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tableDiameterField" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="addTabletoBasketBtn" pref="159" max="32767" attributes="0"/>
+                                  <Component id="tableQuantityField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tableDiameterField" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="131" max="32767" attributes="0"/>
                       </Group>
@@ -323,6 +326,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="tableBaseTypeField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="38" max="32767" attributes="0"/>
                           <Component id="addTabletoBasketBtn" min="-2" pref="58" max="-2" attributes="0"/>
@@ -468,6 +472,15 @@
                   </Properties>
                   <Events>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tableDiameterFieldKeyPressed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="50"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField1ActionPerformed"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jFormattedTextField1PropertyChange"/>
                   </Events>
                 </Component>
               </SubComponents>

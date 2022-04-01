@@ -45,6 +45,7 @@ public class Chair extends Furniture {
 
     }
     
+    @Override
     public String getImage(){
         return image;
     }

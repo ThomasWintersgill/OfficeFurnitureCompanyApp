@@ -33,7 +33,7 @@ public class ChairTest {
     
     @Before
     public void setUp() {
-        instance = new Chair("chair.jpg", true, "1111", WoodType.OAK, 1);
+        instance = new Chair("1111", WoodType.OAK, 1, true);
     }
     
     @After

@@ -65,6 +65,7 @@ public class Main extends javax.swing.JFrame {
         addTabletoBasketBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         tableDiameterField = new javax.swing.JTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         chairFormPanel = new javax.swing.JPanel();
         chairPicPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -267,6 +268,18 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jFormattedTextField1.setText("50");
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
+        jFormattedTextField1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jFormattedTextField1PropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout tableFormPanelLayout = new javax.swing.GroupLayout(tableFormPanel);
         tableFormPanel.setLayout(tableFormPanelLayout);
         tableFormPanelLayout.setHorizontalGroup(
@@ -290,10 +303,12 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                    .addComponent(tableQuantityField, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tableDiameterField))
+                .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                        .addComponent(tableQuantityField, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tableDiameterField))
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         tableFormPanelLayout.setVerticalGroup(
@@ -321,7 +336,8 @@ public class Main extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
@@ -455,7 +471,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_showSummaryButtonActionPerformed
 
     private void addChairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addChairButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
         jTabbedPane1.setSelectedIndex(3);
     }//GEN-LAST:event_addChairButtonActionPerformed
 
@@ -532,6 +548,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_tableTypeOfWoodFieldActionPerformed
 
     private void addTabletoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTabletoBasketBtnActionPerformed
+        
+        
         if(!tableIdField.getText().isBlank()){
             if(idNumbers.contains(tableIdField.getText())){
                 JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
@@ -567,6 +585,40 @@ public class Main extends javax.swing.JFrame {
         
                 
     }//GEN-LAST:event_tableDiameterFieldKeyPressed
+
+    private void jFormattedTextField1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField1PropertyChange
+        // TODO add your handling code here:
+        //this method should check wether an input is valid, then set the value of the text field to that input
+        //this input can then  be retrieved from another method by calling the getter for the field in question
+        
+        Object source = evt.getSource();
+            if (source == jFormattedTextField1) {
+                try{
+                    int diameter = Integer.parseInt(jFormattedTextField1.getText());
+                    if(diameter < 50 || diameter > 300){
+                        //this needs fixing to only show when the field loses focus
+                        //JOptionPane.showMessageDialog(rootPane, "diameter must be between 50 and 300");
+                        jFormattedTextField1.setValue(50);
+                    }else{
+                        jFormattedTextField1.setValue(diameter);
+                    }
+                    System.out.println(diameter);
+                    
+                }catch(NumberFormatException e){
+                    System.out.println("not a number");
+                    
+                }
+                
+                
+                    
+                
+                //jFormattedTextField1.setText("55");
+            }
+    }//GEN-LAST:event_jFormattedTextField1PropertyChange
+
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
    
     /**
      * @param args the command line arguments
@@ -623,6 +675,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> chairQuantityField;
     private javax.swing.JComboBox<String> chairTypeOfWoodField;
     private javax.swing.JPanel deskFormPanel;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

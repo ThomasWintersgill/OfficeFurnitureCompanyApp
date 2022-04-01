@@ -21,13 +21,13 @@ public class IdVerifier extends InputVerifier {
     public boolean verify(JComponent input) {
         String text = ((JTextField) input).getText();
         
-        if(idNumbers.contains(text)){
-            JOptionPane.showMessageDialog(input, "that id number is already in use");
-            return false;
-        }else{
-            idNumbers.add(text);
-            System.out.println(idNumbers);
-        }
+//        if(idNumbers.contains(text)){
+//            JOptionPane.showMessageDialog(input, "that id number is already in use");
+//            return false;
+//        }else{
+//            idNumbers.add(text);
+//            System.out.println(idNumbers);
+//        }
         return true;
         
     }
