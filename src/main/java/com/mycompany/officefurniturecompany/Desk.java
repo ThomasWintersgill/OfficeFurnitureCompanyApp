@@ -21,6 +21,7 @@ public class Desk extends Furniture  {
         this.width = width;
         this.depth = depth;
         this.numberOfDrawers = numberOfDrawers;
+        this.calculatePrice();
     }
 
     public int getWidth() {
@@ -64,7 +65,7 @@ public class Desk extends Furniture  {
     @Override
     public int calculatePrice() {
         itemPrice = ((HEIGHT + width + depth) * 12) + (depth * width) * typeOfWood.getPrice() + (numberOfDrawers * 850);
-        
+        itemPrice = itemPrice * quantity;
         return itemPrice;
         
     }

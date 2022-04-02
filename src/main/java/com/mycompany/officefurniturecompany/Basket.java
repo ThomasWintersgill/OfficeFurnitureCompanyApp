@@ -45,6 +45,7 @@ public class Basket implements Serializable {
     }
     
     public int calculateTotal(){
+        totalPrice = 0;
         for(int i =0; i < basketItems.size(); i++){
             Furniture furniture = basketItems.get(i);
             totalPrice += furniture.getItemPrice();

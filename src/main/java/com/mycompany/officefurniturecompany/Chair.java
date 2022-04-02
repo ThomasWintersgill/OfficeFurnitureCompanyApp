@@ -27,6 +27,7 @@ public class Chair extends Furniture {
     public Chair( String IdNumber, WoodType typeOfWood, int quantity, boolean hasArmrests) {
         super(IdNumber, typeOfWood, quantity);
         this.hasArmrests = hasArmrests;
+        this.calculatePrice();
         
         
     }
@@ -56,7 +57,8 @@ public class Chair extends Furniture {
         if(this.hasArmrests){
             itemPrice += ARMREST_UNITS * this.typeOfWood.getPrice();
         }
-        return itemPrice * this.quantity;
+        itemPrice = itemPrice * quantity;
+        return itemPrice;
 
     }
     

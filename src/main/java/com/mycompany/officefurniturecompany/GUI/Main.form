@@ -477,7 +477,7 @@
                 <Component class="javax.swing.JSpinner" name="deskDepthField">
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                      <SpinnerModel initial="40" maximum="500" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                      <SpinnerModel initial="40" maximum="250" minimum="0" numberType="java.lang.Integer" stepSize="10" type="number"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Click to edit depth"/>
                   </Properties>

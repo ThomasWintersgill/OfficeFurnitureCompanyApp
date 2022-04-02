@@ -18,6 +18,7 @@ public class Table extends Furniture {
         super(IdNumber, typeOfWood, quantity);
         this.baseType = baseType;
         this.diameter = diameter;
+        this.calculatePrice();
     }
 
     public baseType getBaseType() {

@@ -23,8 +23,11 @@ import javax.swing.JFileChooser;
  */
 public class Main extends javax.swing.JFrame {
     private Basket basket = new Basket();
+    
+    //Stores the Id numbers of each furniture item.
     private HashSet<String> idNumbers = new HashSet();
     
+    //Stores the objects after they are created to be displayed in the basket Jlist
     private DefaultListModel dm = new DefaultListModel();
 
     /**
@@ -260,7 +263,7 @@ public class Main extends javax.swing.JFrame {
         deskWidthField.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 10));
         deskWidthField.setToolTipText("Click to edit Width");
 
-        deskDepthField.setModel(new javax.swing.SpinnerNumberModel(40, 0, 500, 1));
+        deskDepthField.setModel(new javax.swing.SpinnerNumberModel(40, 0, 250, 10));
         deskDepthField.setToolTipText("Click to edit depth");
 
         addDesktoBasketBtn.setText("Add to basket");
@@ -672,7 +675,8 @@ public class Main extends javax.swing.JFrame {
 
                 Chair chair = new Chair(idNumber, wood, quantity, armRest);
                 
-                chair.calculatePrice();
+                
+                System.out.println(chair.getItemPrice());
                 basket.addToBasket(chair);
                 System.out.println("the following items are in the basket");
                 //could do with some sort of feedback here to let user know that the item has been added to basket
@@ -721,6 +725,7 @@ public class Main extends javax.swing.JFrame {
         //set the model of the basket list field to be based on the default list model that contains the furniture objects
         //could this model be set from the basketItems list within the basket class?
         basketGrid.setModel(dm);
+        System.out.println(basket.calculateTotal());
         
         
     }//GEN-LAST:event_basketButtonActionPerformed
@@ -744,15 +749,14 @@ public class Main extends javax.swing.JFrame {
                 WoodType wood = WoodType.valueOf(tableTypeOfWoodField.getItemAt(tableTypeOfWoodField.getSelectedIndex()));
                 int quantity = tableQuantityField.getSelectedIndex()+1;
                 baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
-                
-                Table table = new Table(idNumber, wood, quantity, base, diameter);
-                table.calculatePrice();
-                basket.addToBasket(table);
+               
+                basket.addToBasket(new Table(idNumber, wood, quantity, base, diameter));
                 
                 
                 System.out.println("the following items are in the basket " );
                 basket.createSummary();
-                dm.addElement(table);
+                //how to reference an anonymous class? should the default list model go into the furniture class?
+                dm.addElement(Table);
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
@@ -780,7 +784,7 @@ public class Main extends javax.swing.JFrame {
                 int drawers = drawersField.getSelectedIndex()+1;
                 
                 Desk desk = new Desk(idNumber, wood, quantity, width, depth, drawers );
-                desk.calculatePrice();
+                System.out.println(desk.calculatePrice());
                 basket.addToBasket(desk);
                 
                 System.out.println("the following items are in the basket " );
@@ -833,14 +837,20 @@ public class Main extends javax.swing.JFrame {
 
     private void saveBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBasketBtnActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("."));
-        int a = fileChooser.showSaveDialog(null);
-        if(a == JFileChooser.APPROVE_OPTION){
-            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-            basket.saveBasket(file);
+        if(basket.getBasketItems().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Basket is empty, their are no items to save");
+        }else{
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("."));
+            int a = fileChooser.showSaveDialog(null);
+            if(a == JFileChooser.APPROVE_OPTION){
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                basket.saveBasket(file);
         
         }
+            
+        }
+        
     }//GEN-LAST:event_saveBasketBtnActionPerformed
    
     /**
