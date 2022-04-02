@@ -12,9 +12,10 @@ public class Desk extends Furniture  {
     private final int HEIGHT = 80;
     private int width;
     private int depth;
-    private numberDeskDrawers numberOfDrawers;
+    private int numberOfDrawers;
+    private String image = "desk.jpg";
 
-    public Desk(int width, int depth, numberDeskDrawers numberOfDrawers, String IdNumber, WoodType typeOfWood, int quantity) {
+    public Desk(String IdNumber, WoodType typeOfWood, int quantity, int width, int depth, int numberOfDrawers) {
         super(IdNumber, typeOfWood, quantity);
         
         this.width = width;
@@ -42,21 +43,19 @@ public class Desk extends Furniture  {
         
     }
 
-    public numberDeskDrawers getNumberOfDrawers() {
+    public int getNumberOfDrawers() {
         return numberOfDrawers;
     }
 
-    public void setNumberOfDrawers(numberDeskDrawers numberOfDrawers) {
+    public void setNumberOfDrawers(int numberOfDrawers) {
         this.numberOfDrawers = numberOfDrawers;
     }
     
-    public int calculateNoOfUnits(){
-        
-        
-        return 0;
+    @Override
+    public String getImage(){
+        return image;
     }
     
-   
     @Override
     public String toString() {
         return super.toString() +  "HEIGHT=" + HEIGHT + ", width=" + width + ", depth=" + depth + ", numberOfDrawers=" + numberOfDrawers + '}';
@@ -64,7 +63,7 @@ public class Desk extends Furniture  {
 
     @Override
     public int calculatePrice() {
-        itemPrice = ((HEIGHT + width + depth) * 12) + (depth * width) * typeOfWood.getPrice() + (numberOfDrawers.getValue() * 850);
+        itemPrice = ((HEIGHT + width + depth) * 12) + (depth * width) * typeOfWood.getPrice() + (numberOfDrawers * 850);
         
         return itemPrice;
         
