@@ -7,13 +7,15 @@ package com.mycompany.officefurniturecompany.GUI;
 import com.mycompany.officefurniturecompany.Basket;
 import com.mycompany.officefurniturecompany.Chair;
 import com.mycompany.officefurniturecompany.Desk;
+import com.mycompany.officefurniturecompany.Furniture;
 import com.mycompany.officefurniturecompany.Table;
 import com.mycompany.officefurniturecompany.WoodType;
 import com.mycompany.officefurniturecompany.baseType;
-import com.mycompany.officefurniturecompany.numberDeskDrawers;
+import java.io.File;
 import javax.swing.JOptionPane;
 import java.util.HashSet;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -238,11 +240,6 @@ public class Main extends javax.swing.JFrame {
         jLabel12.setText("Type of wood:");
 
         deskTypeOfWoodField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OAK", "WALNUT" }));
-        deskTypeOfWoodField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deskTypeOfWoodFieldActionPerformed(evt);
-            }
-        });
 
         deskQuantityField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
@@ -596,6 +593,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         saveBasketBtn.setText("Save basket");
+        saveBasketBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBasketBtnActionPerformed(evt);
+            }
+        });
 
         loadBasketBtn.setText("Load Basket");
         loadBasketBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -647,6 +649,7 @@ public class Main extends javax.swing.JFrame {
 
     private void showSummaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSummaryButtonActionPerformed
         // TODO add your handling code here:
+        basket.createSummary();
     }//GEN-LAST:event_showSummaryButtonActionPerformed
 
     private void addChairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addChairButtonActionPerformed
@@ -675,6 +678,8 @@ public class Main extends javax.swing.JFrame {
                 //could do with some sort of feedback here to let user know that the item has been added to basket
                 basket.createSummary();
                 dm.addElement(chair);
+                
+                
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
@@ -708,10 +713,13 @@ public class Main extends javax.swing.JFrame {
     private void basketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basketButtonActionPerformed
         // TODO add your handling code here:
         //show the correct tabbed pane for the basket menu
+        
         jTabbedPane1.setSelectedIndex(0);
         //create a new basket renderer object
         basketGrid.setCellRenderer(new basketRenderer());
+        
         //set the model of the basket list field to be based on the default list model that contains the furniture objects
+        //could this model be set from the basketItems list within the basket class?
         basketGrid.setModel(dm);
         
         
@@ -753,10 +761,6 @@ public class Main extends javax.swing.JFrame {
          
     }//GEN-LAST:event_addTabletoBasketBtnActionPerformed
 
-    private void deskTypeOfWoodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deskTypeOfWoodFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deskTypeOfWoodFieldActionPerformed
-
     private void addDesktoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDesktoBasketBtnActionPerformed
         // TODO add your handling code here:
         if (!deskIdField.getText().isBlank()){
@@ -792,6 +796,28 @@ public class Main extends javax.swing.JFrame {
 
     private void loadBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBasketBtnActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        
+        fileChooser.setCurrentDirectory(new File("."));
+        
+        int a = fileChooser.showOpenDialog(null);
+        if(a == JFileChooser.APPROVE_OPTION){
+            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+            
+            basket.emptyBasket();
+            dm.clear();
+            //add the loaded basket into the empty basket
+            basket = basket.loadBasket(file);
+            //iterate over the new basket and add the furniture objects into the list model so they can be rendered
+            for(int i = 0; i < basket.getBasketItems().size(); i++){
+                Furniture furniture = basket.getBasketItems().get(i);
+                dm.addElement(furniture);
+                
+            }
+            System.out.println("the new basket is ");
+            basket.createSummary();
+            
+        }
     }//GEN-LAST:event_loadBasketBtnActionPerformed
 
     private void clearBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBasketBtnActionPerformed
@@ -800,8 +826,22 @@ public class Main extends javax.swing.JFrame {
         if(dialog == JOptionPane.YES_OPTION){
              basket.emptyBasket();
              dm.clear();
+             System.out.println("the current basket after clearing is");
+             basket.createSummary();
         } 
     }//GEN-LAST:event_clearBasketBtnActionPerformed
+
+    private void saveBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBasketBtnActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("."));
+        int a = fileChooser.showSaveDialog(null);
+        if(a == JFileChooser.APPROVE_OPTION){
+            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+            basket.saveBasket(file);
+        
+        }
+    }//GEN-LAST:event_saveBasketBtnActionPerformed
    
     /**
      * @param args the command line arguments

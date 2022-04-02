@@ -4,6 +4,7 @@
  */
 package com.mycompany.officefurniturecompany;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,30 +22,31 @@ import java.util.Collections;
 public class Basket implements Serializable {
     
     private int totalPrice;
-    private ArrayList<Furniture> Basket = new ArrayList<>();
+    //should change the name of this list to basket items?
+    private ArrayList<Furniture> basketItems = new ArrayList<>();
             
     public void basket(){
         
     }        
     
     public void addToBasket(Furniture furniture){
-        Basket.add(furniture);
+        basketItems.add(furniture);
         
    
     }
     
     public void removeBasketItem(Furniture furniture){
-        Basket.remove(furniture);
+        basketItems.remove(furniture);
         
     }
     
     public void emptyBasket(){
-        Basket.clear();
+        basketItems.clear();
     }
     
     public int calculateTotal(){
-        for(int i =0; i < Basket.size(); i++){
-            Furniture furniture = Basket.get(i);
+        for(int i =0; i < basketItems.size(); i++){
+            Furniture furniture = basketItems.get(i);
             totalPrice += furniture.getItemPrice();
             
         }
@@ -53,20 +55,20 @@ public class Basket implements Serializable {
     
     //only prints the to string method at the moment
     public void createSummary(){
-        Collections.sort(Basket);
+        Collections.sort(basketItems);
         this.printBasket();
   
     }
     
     //just for testing purposes, but the create summary will be similar
     public void printBasket(){
-         for(int i =0; i < Basket.size(); i++){
-             Furniture furniture = Basket.get(i);
+         for(int i =0; i < basketItems.size(); i++){
+             Furniture furniture = basketItems.get(i);
              System.out.println(furniture.toString());
          }   
     }
     
-    public void saveBasket(String FileName){
+    public void saveBasket(File FileName){
         try{
             FileOutputStream fileOut = new FileOutputStream(FileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -81,7 +83,7 @@ public class Basket implements Serializable {
         }
     }
     
-    public Basket loadBAsket(String FileName){
+    public Basket loadBasket(File FileName){
         Basket b = null;
         
         try{
@@ -95,8 +97,13 @@ public class Basket implements Serializable {
         }catch(IOException e){
             e.printStackTrace();
         }catch(ClassNotFoundException e){
-            e.printStackTrace();
+            System.out.println("sorry that file is not valid");
         }
         return b;
     }
+
+    public ArrayList<Furniture> getBasketItems() {
+        return basketItems;
+    }
+    
 }
