@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import java.util.HashSet;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -103,6 +104,8 @@ public class Main extends javax.swing.JFrame {
         saveBasketBtn = new javax.swing.JButton();
         loadBasketBtn = new javax.swing.JButton();
         clearBasketBtn = new javax.swing.JButton();
+        totalPricePanel = new javax.swing.JPanel();
+        totalPriceLabel = new javax.swing.JLabel();
 
         label1.setText("label1");
 
@@ -174,7 +177,7 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(addDeskButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(showSummaryButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(10, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +190,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(addDeskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(showSummaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         jPanel8.add(buttonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 150, 760));
@@ -196,6 +199,11 @@ public class Main extends javax.swing.JFrame {
         basketGrid.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         basketGrid.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         basketGrid.setVisibleRowCount(-1);
+        basketGrid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                basketGridMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(basketGrid);
 
         javax.swing.GroupLayout basketPanelLayout = new javax.swing.GroupLayout(basketPanel);
@@ -645,6 +653,27 @@ public class Main extends javax.swing.JFrame {
 
         jPanel8.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 720, 820, 110));
 
+        totalPricePanel.setBackground(new java.awt.Color(255, 204, 204));
+
+        totalPriceLabel.setBackground(new java.awt.Color(255, 255, 204));
+        totalPriceLabel.setForeground(new java.awt.Color(102, 102, 0));
+
+        javax.swing.GroupLayout totalPricePanelLayout = new javax.swing.GroupLayout(totalPricePanel);
+        totalPricePanel.setLayout(totalPricePanelLayout);
+        totalPricePanelLayout.setHorizontalGroup(
+            totalPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(totalPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+        );
+        totalPricePanelLayout.setVerticalGroup(
+            totalPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(totalPricePanelLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(465, Short.MAX_VALUE))
+        );
+
+        jPanel8.add(totalPricePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 70, 240, 760));
+
         getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -682,6 +711,9 @@ public class Main extends javax.swing.JFrame {
                 //could do with some sort of feedback here to let user know that the item has been added to basket
                 basket.createSummary();
                 dm.addElement(chair);
+                
+                //is this way ok to do it? or should i create a panel and update everytime a add to basket button is pushed
+                totalPriceLabel.setText(String.valueOf(basket.calculateTotal()));
                 
                 
             }
@@ -756,7 +788,7 @@ public class Main extends javax.swing.JFrame {
                 System.out.println("the following items are in the basket " );
                 basket.createSummary();
                 //how to reference an anonymous class? should the default list model go into the furniture class?
-                dm.addElement(Table);
+                //dm.addElement(Table);
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
@@ -791,6 +823,7 @@ public class Main extends javax.swing.JFrame {
                 basket.createSummary();
                 
                 dm.addElement(desk);
+                totalPriceLabel.setText(String.valueOf(basket.calculateTotal()));
   
             }
         }else {
@@ -852,6 +885,14 @@ public class Main extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_saveBasketBtnActionPerformed
+
+    private void basketGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_basketGridMouseClicked
+        // TODO add your handling code here:
+       if(SwingUtilities.isRightMouseButton(evt) || evt.isControlDown()){
+           System.out.println("right mouse clicked");
+           
+       }
+    }//GEN-LAST:event_basketGridMouseClicked
    
     /**
      * @param args the command line arguments
@@ -949,5 +990,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel tablePicPanel;
     private javax.swing.JComboBox<String> tableQuantityField;
     private javax.swing.JComboBox<String> tableTypeOfWoodField;
+    private javax.swing.JLabel totalPriceLabel;
+    private javax.swing.JPanel totalPricePanel;
     // End of variables declaration//GEN-END:variables
 }
