@@ -29,7 +29,7 @@ public class Main extends javax.swing.JFrame {
     private HashSet<String> idNumbers = new HashSet();
     
     //Stores the objects after they are created to be displayed in the basket Jlist
-    private DefaultListModel dm = new DefaultListModel();
+    private DefaultListModel<Furniture> dm = new DefaultListModel();
 
     /**
      * Creates new form Main
@@ -870,28 +870,45 @@ public class Main extends javax.swing.JFrame {
 
     private void saveBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBasketBtnActionPerformed
         // TODO add your handling code here:
-        if(basket.getBasketItems().isEmpty()){
+        if (basket.getBasketItems().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Basket is empty, their are no items to save");
-        }else{
+        }else {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("."));
             int a = fileChooser.showSaveDialog(null);
-            if(a == JFileChooser.APPROVE_OPTION){
+            if (a == JFileChooser.APPROVE_OPTION){
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                basket.saveBasket(file);
-        
-        }
-            
-        }
-        
+                basket.saveBasket(file);  
+            } 
+        } 
     }//GEN-LAST:event_saveBasketBtnActionPerformed
 
     private void basketGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_basketGridMouseClicked
         // TODO add your handling code here:
-       if(SwingUtilities.isRightMouseButton(evt) || evt.isControlDown()){
-           System.out.println("right mouse clicked");
+        
+        if(SwingUtilities.isRightMouseButton(evt) || evt.isControlDown()){
+            int index = basketGrid.locationToIndex(evt.getPoint());
+            System.out.println(index + "this is the index of the mouse");
+            if(index >=0){
+                int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to remove this item from the basket");
+                if(dialog == JOptionPane.YES_OPTION){
+                    Furniture item = basketGrid.getModel().getElementAt(index);
+                    basket.removeBasketItem(item);
+                    dm.removeElement(item);
+                    System.out.println("the new basket is:");
+                    basket.createSummary();   
+                }   
+            }
+        }//once an items is in the basket, the index no longer shows less than 0?
+          
+        if(SwingUtilities.isLeftMouseButton(evt)){
+            JOptionPane.showMessageDialog(rootPane, basketGrid.getSelectedValue());
+            System.out.println(basketGrid.getSelectedValue());
+            System.out.println(basketGrid.getSelectedValue());
            
-       }
+        }
+        
+       
     }//GEN-LAST:event_basketGridMouseClicked
    
     /**
@@ -941,7 +958,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton addTabletoBasketBtn;
     private javax.swing.JCheckBox armRestsBox;
     private javax.swing.JButton basketButton;
-    private javax.swing.JList<String> basketGrid;
+    private javax.swing.JList<Furniture> basketGrid;
     private javax.swing.JPanel basketPanel;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel chairFormPanel;
