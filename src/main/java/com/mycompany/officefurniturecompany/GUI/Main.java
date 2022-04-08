@@ -839,6 +839,7 @@ public class Main extends javax.swing.JFrame {
         
         int a = fileChooser.showOpenDialog(null);
         if(a == JFileChooser.APPROVE_OPTION){
+            
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
             
             basket.emptyBasket();
@@ -901,12 +902,26 @@ public class Main extends javax.swing.JFrame {
             }
         }//once an items is in the basket, the index no longer shows less than 0?
           
-        if(SwingUtilities.isLeftMouseButton(evt)){
+        else if(SwingUtilities.isLeftMouseButton(evt)){
             JOptionPane.showMessageDialog(rootPane, basketGrid.getSelectedValue());
             System.out.println(basketGrid.getSelectedValue());
             System.out.println(basketGrid.getSelectedValue());
            
+        }else if(SwingUtilities.isMiddleMouseButton(evt)){
+            int index = basketGrid.locationToIndex(evt.getPoint());
+            if(index >= 0 ){
+                int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to edit this item");
+                if(dialog == JOptionPane.YES_OPTION){
+                    Furniture item = basketGrid.getModel().getElementAt(index);
+                    System.out.println(item);
+                }
+                
+            }
         }
+        
+        //middle mouse button here
+        //go to the correct tabbed pane
+        //give the object detailsm
         
        
     }//GEN-LAST:event_basketGridMouseClicked
