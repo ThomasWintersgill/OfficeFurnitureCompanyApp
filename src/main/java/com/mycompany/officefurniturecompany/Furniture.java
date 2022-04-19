@@ -67,6 +67,11 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
     public String getImage(){
         return image;
     }
+    
+    public String getClassName(){
+        Class c = getClass();
+        return c.getSimpleName();
+    }
  
     @Override
     public String toString() {

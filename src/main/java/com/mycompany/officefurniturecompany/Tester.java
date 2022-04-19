@@ -11,8 +11,9 @@ package com.mycompany.officefurniturecompany;
 public class Tester {
     public static void main(String[] args) {
         
-//        Chair chair = new Chair (true, 1, WoodType.OAK, 1 , "str");
-//        System.out.println(chair.toString());
+        Chair chair = new Chair("1111", WoodType.OAK, 1, true);
+        System.out.println(chair.getClassName());
+
 //        System.out.println(chair.calculatePrice());
 //        System.out.println(chair.getQuantity());
 

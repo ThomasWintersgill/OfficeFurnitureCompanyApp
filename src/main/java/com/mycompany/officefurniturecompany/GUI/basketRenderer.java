@@ -32,7 +32,7 @@ public class basketRenderer extends DefaultListCellRenderer implements ListCellR
         //setText(furniture.getIdNumber());
         setIcon(icon);
         
-        
+       
         //setIcon(icon);
         
         

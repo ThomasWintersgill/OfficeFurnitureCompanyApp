@@ -37,6 +37,13 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
+    
+    // your own methods here
+    
+    public static int getTabbedIndex(Furniture item){
+        //take in furniture item and return the required tabbedPAne index
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -887,7 +894,7 @@ public class Main extends javax.swing.JFrame {
     private void basketGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_basketGridMouseClicked
         // TODO add your handling code here:
         
-        if(SwingUtilities.isRightMouseButton(evt) || evt.isControlDown()){
+        if(SwingUtilities.isRightMouseButton(evt)){
             int index = basketGrid.locationToIndex(evt.getPoint());
             System.out.println(index + "this is the index of the mouse");
             if(index >=0){
@@ -902,27 +909,29 @@ public class Main extends javax.swing.JFrame {
             }
         }//once an items is in the basket, the index no longer shows less than 0?
           
-        else if(SwingUtilities.isLeftMouseButton(evt)){
+        if(SwingUtilities.isLeftMouseButton(evt)){
             JOptionPane.showMessageDialog(rootPane, basketGrid.getSelectedValue());
             System.out.println(basketGrid.getSelectedValue());
             System.out.println(basketGrid.getSelectedValue());
            
-        }else if(SwingUtilities.isMiddleMouseButton(evt)){
+        }if(evt.isControlDown()){
+            System.out.println("middle mouse clicked");
             int index = basketGrid.locationToIndex(evt.getPoint());
             if(index >= 0 ){
                 int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to edit this item");
                 if(dialog == JOptionPane.YES_OPTION){
                     Furniture item = basketGrid.getModel().getElementAt(index);
-                    System.out.println(item);
+                    System.out.println(item.getClassName());
+                    
+                    //make this a method, take in item, call class name and return an index, where would it make sense to 
+                    //put this method in its own class
+                    if(item.getClassName().equals("Chair")){
+                        jTabbedPane1.setSelectedIndex(3);
+                    }
                 }
                 
             }
         }
-        
-        //middle mouse button here
-        //go to the correct tabbed pane
-        //give the object detailsm
-        
        
     }//GEN-LAST:event_basketGridMouseClicked
    

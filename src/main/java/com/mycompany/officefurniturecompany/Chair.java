@@ -42,7 +42,8 @@ public class Chair extends Furniture {
     
     @Override
     public String toString() {
-        return super.toString() + "hasArmrests=" + hasArmrests;
+        
+        return super.toString() + "hasArmrests=" + hasArmrests ;
 
     }
     
