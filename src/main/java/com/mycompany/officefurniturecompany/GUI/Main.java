@@ -40,11 +40,25 @@ public class Main extends javax.swing.JFrame {
     
     // your own methods here
     
+    /*Takes in furniture item and returns the index of the tabbed pane that
+    corresponds to that item*/
     public static int getTabbedIndex(Furniture item){
-        //take in furniture item and return the required tabbedPAne index
-        
+        //take in furniture item and return the required tabbedPane index
+        int index = 0;
+        switch(item.getClassName()){
+            case "Chair":
+                index = 3;
+                break;
+            case "Table":
+                index = 2;
+                break;
+            case "Desk":
+                index = 1;
+                break;
+        }
+        return index ;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +69,10 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         label1 = new java.awt.Label();
+        totalPricePanel1 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
+        totalPricePanel2 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
+        totalPricePanel3 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
+        totalPricePanel4 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         buttonPanel = new javax.swing.JPanel();
@@ -84,6 +102,7 @@ public class Main extends javax.swing.JFrame {
         addDesktoBasketBtn = new javax.swing.JButton();
         tableFormPanel = new javax.swing.JPanel();
         tablePicPanel = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         tableIdField = new javax.swing.JFormattedTextField();
         tableTypeOfWoodField = new javax.swing.JComboBox<>();
         tableQuantityField = new javax.swing.JComboBox<>();
@@ -97,6 +116,7 @@ public class Main extends javax.swing.JFrame {
         tableDiameterField = new javax.swing.JSpinner();
         chairFormPanel = new javax.swing.JPanel();
         chairPicPanel = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         addChairtoBasketBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -106,6 +126,7 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         chairQuantityField = new javax.swing.JComboBox<>();
         chairIdField = new javax.swing.JFormattedTextField();
+        updateChairBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         basketButton = new javax.swing.JButton();
         saveBasketBtn = new javax.swing.JButton();
@@ -113,6 +134,7 @@ public class Main extends javax.swing.JFrame {
         clearBasketBtn = new javax.swing.JButton();
         totalPricePanel = new javax.swing.JPanel();
         totalPriceLabel = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         label1.setText("label1");
 
@@ -217,11 +239,11 @@ public class Main extends javax.swing.JFrame {
         basketPanel.setLayout(basketPanelLayout);
         basketPanelLayout.setHorizontalGroup(
             basketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         basketPanelLayout.setVerticalGroup(
             basketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jTabbedPane1.addTab("tab1", basketPanel);
@@ -354,9 +376,9 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(deskFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(deskDepthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(42, Short.MAX_VALUE))
+                        .addContainerGap(43, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deskFormPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(addDesktoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))))
         );
@@ -367,15 +389,17 @@ public class Main extends javax.swing.JFrame {
 
         tablePicPanel.setPreferredSize(new java.awt.Dimension(329, 280));
 
+        jLabel16.setText("jLabel16");
+
         javax.swing.GroupLayout tablePicPanelLayout = new javax.swing.GroupLayout(tablePicPanel);
         tablePicPanel.setLayout(tablePicPanelLayout);
         tablePicPanelLayout.setHorizontalGroup(
             tablePicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
         );
         tablePicPanelLayout.setVerticalGroup(
             tablePicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
 
         try {
@@ -478,7 +502,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(tableFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableBaseTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(addTabletoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
         );
@@ -489,15 +513,17 @@ public class Main extends javax.swing.JFrame {
 
         chairPicPanel.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel17.setText("jLabel17");
+
         javax.swing.GroupLayout chairPicPanelLayout = new javax.swing.GroupLayout(chairPicPanel);
         chairPicPanel.setLayout(chairPicPanelLayout);
         chairPicPanelLayout.setHorizontalGroup(
             chairPicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
         );
         chairPicPanelLayout.setVerticalGroup(
             chairPicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 204));
@@ -539,6 +565,13 @@ public class Main extends javax.swing.JFrame {
         }
         chairIdField.setToolTipText("Enter the 4 digit product ID  ");
 
+        updateChairBtn.setText("Update Changes");
+        updateChairBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateChairBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout chairFormPanelLayout = new javax.swing.GroupLayout(chairFormPanel);
         chairFormPanel.setLayout(chairFormPanelLayout);
         chairFormPanelLayout.setHorizontalGroup(
@@ -547,6 +580,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(chairFormPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateChairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
                         .addComponent(addChairtoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(chairFormPanelLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -592,8 +627,10 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(armRestsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(addChairtoBasketBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(chairFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addChairtoBasketBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(updateChairBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(53, 53, 53))
         );
 
@@ -663,20 +700,33 @@ public class Main extends javax.swing.JFrame {
         totalPricePanel.setBackground(new java.awt.Color(255, 204, 204));
 
         totalPriceLabel.setBackground(new java.awt.Color(255, 255, 204));
-        totalPriceLabel.setForeground(new java.awt.Color(102, 102, 0));
+        totalPriceLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        totalPriceLabel.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel18.setText("Total Basket Price:");
 
         javax.swing.GroupLayout totalPricePanelLayout = new javax.swing.GroupLayout(totalPricePanel);
         totalPricePanel.setLayout(totalPricePanelLayout);
         totalPricePanelLayout.setHorizontalGroup(
             totalPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(totalPriceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addGroup(totalPricePanelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(totalPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalPricePanelLayout.createSequentialGroup()
+                        .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         totalPricePanelLayout.setVerticalGroup(
             totalPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalPricePanelLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addGap(106, 106, 106)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(486, Short.MAX_VALUE))
         );
 
         jPanel8.add(totalPricePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 70, 240, 760));
@@ -720,9 +770,12 @@ public class Main extends javax.swing.JFrame {
                 dm.addElement(chair);
                 
                 //is this way ok to do it? or should i create a panel and update everytime a add to basket button is pushed
-                totalPriceLabel.setText(String.valueOf(basket.calculateTotal()));
+                System.out.println((float)basket.calculateTotal()/100);
                 
                 
+                   
+                totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
+                //System.out.printf("%.2f", chair.getItemPrice());
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
@@ -789,13 +842,15 @@ public class Main extends javax.swing.JFrame {
                 int quantity = tableQuantityField.getSelectedIndex()+1;
                 baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
                
-                basket.addToBasket(new Table(idNumber, wood, quantity, base, diameter));
+                Table table = new Table(idNumber, wood, quantity, base, diameter);
+                basket.addToBasket(table);
                 
                 
                 System.out.println("the following items are in the basket " );
                 basket.createSummary();
                 //how to reference an anonymous class? should the default list model go into the furniture class?
                 //dm.addElement(Table);
+                totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
@@ -830,7 +885,7 @@ public class Main extends javax.swing.JFrame {
                 basket.createSummary();
                 
                 dm.addElement(desk);
-                totalPriceLabel.setText(String.valueOf(basket.calculateTotal()));
+                totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
   
             }
         }else {
@@ -861,6 +916,7 @@ public class Main extends javax.swing.JFrame {
             }
             System.out.println("the new basket is ");
             basket.createSummary();
+            totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
             
         }
     }//GEN-LAST:event_loadBasketBtnActionPerformed
@@ -871,8 +927,10 @@ public class Main extends javax.swing.JFrame {
         if(dialog == JOptionPane.YES_OPTION){
              basket.emptyBasket();
              dm.clear();
+             idNumbers.clear();
              System.out.println("the current basket after clearing is");
              basket.createSummary();
+             totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
         } 
     }//GEN-LAST:event_clearBasketBtnActionPerformed
 
@@ -904,7 +962,8 @@ public class Main extends javax.swing.JFrame {
                     basket.removeBasketItem(item);
                     dm.removeElement(item);
                     System.out.println("the new basket is:");
-                    basket.createSummary();   
+                    basket.createSummary();  
+                    totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
                 }   
             }
         }//once an items is in the basket, the index no longer shows less than 0?
@@ -914,26 +973,26 @@ public class Main extends javax.swing.JFrame {
             System.out.println(basketGrid.getSelectedValue());
             System.out.println(basketGrid.getSelectedValue());
            
-        }if(evt.isControlDown()){
+        }if(SwingUtilities.isMiddleMouseButton(evt)){
             System.out.println("middle mouse clicked");
             int index = basketGrid.locationToIndex(evt.getPoint());
             if(index >= 0 ){
                 int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to edit this item");
                 if(dialog == JOptionPane.YES_OPTION){
+                    //maybe able to solve this, just re insert a new item at the same index?
                     Furniture item = basketGrid.getModel().getElementAt(index);
-                    System.out.println(item.getClassName());
-                    
-                    //make this a method, take in item, call class name and return an index, where would it make sense to 
-                    //put this method in its own class
-                    if(item.getClassName().equals("Chair")){
-                        jTabbedPane1.setSelectedIndex(3);
-                    }
-                }
-                
+                    jTabbedPane1.setSelectedIndex(getTabbedIndex(item));
+                    JOptionPane.showMessageDialog(rootPane, "enter the new details to be updated");
+     
+                }     
             }
         }
        
     }//GEN-LAST:event_basketGridMouseClicked
+
+    private void updateChairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateChairBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateChairBtnActionPerformed
    
     /**
      * @param args the command line arguments
@@ -1007,6 +1066,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1033,5 +1095,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tableTypeOfWoodField;
     private javax.swing.JLabel totalPriceLabel;
     private javax.swing.JPanel totalPricePanel;
+    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel1;
+    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel2;
+    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel3;
+    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel4;
+    private javax.swing.JButton updateChairBtn;
     // End of variables declaration//GEN-END:variables
 }

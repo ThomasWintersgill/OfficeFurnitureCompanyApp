@@ -27,17 +27,18 @@ public class Basket implements Serializable {
             
     public void basket(){
         
-    }        
+    }
+    
+    public int getTotalPrice(){
+        return totalPrice;
+    }
     
     public void addToBasket(Furniture furniture){
         basketItems.add(furniture);
-        
-   
     }
     
     public void removeBasketItem(Furniture furniture){
         basketItems.remove(furniture);
-        
     }
     
     public void emptyBasket(){
@@ -51,7 +52,7 @@ public class Basket implements Serializable {
             totalPrice += furniture.getItemPrice();
             
         }
-        return totalPrice /100;
+        return totalPrice ;
     }
     
     //only prints the to string method at the moment

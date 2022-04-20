@@ -13,6 +13,7 @@ public class Tester {
         
         Chair chair = new Chair("1111", WoodType.OAK, 1, true);
         System.out.println(chair.getClassName());
+        System.out.printf("%.2f", chair.getItemPrice());
 
 //        System.out.println(chair.calculatePrice());
 //        System.out.println(chair.getQuantity());
