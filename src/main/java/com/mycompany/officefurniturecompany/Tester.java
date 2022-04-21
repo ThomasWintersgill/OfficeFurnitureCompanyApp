@@ -22,8 +22,7 @@ public class Tester {
         System.out.println(chair_two.toString());
         System.out.println("£"+(float)chair_two.getItemPrice()/100);
         
-        
-        
+    
         //Create the two new table objects.
         Table table = new Table("0003", WoodType.OAK, 1, baseType.CHROME, 60);
         Table table_two = new Table("0004", WoodType.WALNUT, 2, baseType.WOODEN, 100);

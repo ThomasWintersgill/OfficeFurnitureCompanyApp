@@ -15,23 +15,17 @@ public class Chair extends Furniture {
     private final int ARMREST_UNITS = 250;
     private final int CHAIR_UNITS = 1625;
     private String image = "chair.jpg";
-    
-    
 
-    public Chair(){
-        
+    public Chair() {
+
     }
-    
-    
 
-    public Chair( String IdNumber, WoodType typeOfWood, int quantity, boolean hasArmrests) {
+    public Chair(String IdNumber, WoodType typeOfWood, int quantity, boolean hasArmrests) {
         super(IdNumber, typeOfWood, quantity);
         this.hasArmrests = hasArmrests;
         this.calculatePrice();
-        
-        
     }
-    
+
     public boolean isHasArmrests() {
         return hasArmrests;
     }
@@ -39,23 +33,21 @@ public class Chair extends Furniture {
     public void setHasArmrests(boolean hasArmrests) {
         this.hasArmrests = hasArmrests;
     }
-    
+
     @Override
     public String toString() {
-        
-        return super.toString() + "hasArmrests=" + hasArmrests ;
-
+        return super.toString() + "hasArmrests=" + hasArmrests;
     }
-    
+
     @Override
-    public String getImage(){
+    public String getImage() {
         return image;
     }
 
     @Override
     public int calculatePrice() {
         itemPrice = this.typeOfWood.getPrice() * CHAIR_UNITS;
-        if(this.hasArmrests){
+        if (this.hasArmrests) {
             itemPrice += ARMREST_UNITS * this.typeOfWood.getPrice();
         }
         itemPrice = itemPrice * quantity;
@@ -63,7 +55,4 @@ public class Chair extends Furniture {
 
     }
     
-    
-
-
 }

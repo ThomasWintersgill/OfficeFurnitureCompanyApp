@@ -12,9 +12,8 @@ public class Table extends Furniture {
     private baseType baseType;
     private int diameter;
     private String image = "table.jpg";
-    
 
-    public Table( String IdNumber, WoodType typeOfWood, int quantity, baseType baseType, int diameter) {
+    public Table(String IdNumber, WoodType typeOfWood, int quantity, baseType baseType, int diameter) {
         super(IdNumber, typeOfWood, quantity);
         this.baseType = baseType;
         this.diameter = diameter;
@@ -36,12 +35,12 @@ public class Table extends Furniture {
     public void setDiameter(int diameter) {
         this.diameter = diameter;
     }
-    
+
     @Override
-    public String getImage(){
+    public String getImage() {
         return image;
     }
-    
+
     @Override
     public String toString() {
         return super.toString() + "baseType=" + baseType + ", diameter=" + diameter + '}';
@@ -49,16 +48,12 @@ public class Table extends Furniture {
 
     @Override
     public int calculatePrice() {
-         int numberOfUnits = this.diameter * this.diameter;
+        int numberOfUnits = this.diameter * this.diameter;
         itemPrice = (numberOfUnits * typeOfWood.getPrice()) + baseType.getPrice();
         this.itemPrice = itemPrice * quantity;
-        
+
         return itemPrice;
-        
+
     }
-    
-    
-    
-    
-    
+
 }

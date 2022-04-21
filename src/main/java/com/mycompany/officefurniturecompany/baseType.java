@@ -11,18 +11,15 @@ package com.mycompany.officefurniturecompany;
 //Stores price of the different base types in pence.
 public enum baseType {
     CHROME(3500), WOODEN(4500);
-    
+
     private final int price;
-    
-    baseType(int price){
+
+    baseType(int price) {
         this.price = price;
     }
-    
-    public int getPrice(){
+
+    public int getPrice() {
         return price;
     }
 
-    
- 
-    
 }

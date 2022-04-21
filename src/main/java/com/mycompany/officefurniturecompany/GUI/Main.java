@@ -23,11 +23,12 @@ import javax.swing.SwingUtilities;
  * @author thoma
  */
 public class Main extends javax.swing.JFrame {
+
     private Basket basket = new Basket();
-    
+
     //Stores the Id numbers of each furniture item.
     private HashSet<String> idNumbers = new HashSet();
-    
+
     //Stores the objects after they are created to be displayed in the basket Jlist
     private DefaultListModel<Furniture> dm = new DefaultListModel();
 
@@ -37,15 +38,14 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-    
+
     // your own methods here
-    
     /*Takes in furniture item and returns the index of the tabbed pane that
     corresponds to that item*/
-    public static int getTabbedIndex(Furniture item){
+    public static int getTabbedIndex(Furniture item) {
         //take in furniture item and return the required tabbedPane index
         int index = 0;
-        switch(item.getClassName()){
+        switch (item.getClassName()) {
             case "Chair":
                 index = 3;
                 break;
@@ -56,9 +56,9 @@ public class Main extends javax.swing.JFrame {
                 index = 1;
                 break;
         }
-        return index ;
+        return index;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -224,6 +224,7 @@ public class Main extends javax.swing.JFrame {
 
         jPanel8.add(buttonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 150, 760));
 
+        basketGrid.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         basketGrid.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         basketGrid.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         basketGrid.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
@@ -738,6 +739,8 @@ public class Main extends javax.swing.JFrame {
 
     private void showSummaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSummaryButtonActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Summary has been ouput to the console");
+        System.out.println("SUMMARY:");
         basket.createSummary();
     }//GEN-LAST:event_showSummaryButtonActionPerformed
 
@@ -748,48 +751,47 @@ public class Main extends javax.swing.JFrame {
 
     private void addChairtoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addChairtoBasketBtnActionPerformed
        //this currently works but not if the box is left blank before the first press
-        if(!chairIdField.getText().isBlank()){
-            if(idNumbers.contains(chairIdField.getText())){
-                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
-            }else{
-                idNumbers.add(chairIdField.getText());
-           
-                String idNumber = chairIdField.getText();
-                int quantity = chairQuantityField.getSelectedIndex()+1;
-                boolean armRest = armRestsBox.isSelected();
-                WoodType wood = WoodType.valueOf(chairTypeOfWoodField.getItemAt(chairTypeOfWoodField.getSelectedIndex()));
+        if (!basket.isFull()) {
+            if (!chairIdField.getText().isBlank()) {
+                if (idNumbers.contains(chairIdField.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
+                } else {
+                    idNumbers.add(chairIdField.getText());
 
-                Chair chair = new Chair(idNumber, wood, quantity, armRest);
-                
-                
-                System.out.println(chair.getItemPrice());
-                basket.addToBasket(chair);
-                System.out.println("the following items are in the basket");
-                //could do with some sort of feedback here to let user know that the item has been added to basket
-                basket.createSummary();
-                dm.addElement(chair);
-                
-                //is this way ok to do it? or should i create a panel and update everytime a add to basket button is pushed
-                System.out.println((float)basket.calculateTotal()/100);
-                
-                
-                   
-                totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
-                //System.out.printf("%.2f", chair.getItemPrice());
+                    String idNumber = chairIdField.getText();
+                    int quantity = chairQuantityField.getSelectedIndex() + 1;
+                    boolean armRest = armRestsBox.isSelected();
+                    WoodType wood = WoodType.valueOf(chairTypeOfWoodField.getItemAt(chairTypeOfWoodField.getSelectedIndex()));
+
+                    Chair chair = new Chair(idNumber, wood, quantity, armRest);
+
+                    System.out.println(chair.getItemPrice());
+                    basket.addToBasket(chair);
+                    System.out.println("the following items are in the basket");
+                    //could do with some sort of feedback here to let user know that the item has been added to basket
+                    basket.createSummary();
+                    dm.addElement(chair);
+
+                    //is this way ok to do it? or should i create a panel and update everytime a add to basket button is pushed
+                    System.out.println((float) basket.calculateTotal() / 100);
+
+                    totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+                    //System.out.printf("%.2f", chair.getItemPrice());
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
             }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Please ensure all fields are filled before adding to basket");
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "The basket is full");
         }
-            
-            
-        
-        
-   
+
+
     }//GEN-LAST:event_addChairtoBasketBtnActionPerformed
 
     private void armRestsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_armRestsBoxActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_armRestsBoxActionPerformed
 
     private void addTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTableButtonActionPerformed
@@ -809,11 +811,11 @@ public class Main extends javax.swing.JFrame {
     private void basketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basketButtonActionPerformed
         // TODO add your handling code here:
         //show the correct tabbed pane for the basket menu
-        
+
         jTabbedPane1.setSelectedIndex(0);
         //create a new basket renderer object
         basketGrid.setCellRenderer(new basketRenderer());
-        
+
         //set the model of the basket list field to be based on the default list model that contains the furniture objects
         //could this model be set from the basketItems list within the basket class?
         basketGrid.setModel(dm);
@@ -828,166 +830,162 @@ public class Main extends javax.swing.JFrame {
 
     private void addTabletoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTabletoBasketBtnActionPerformed
 
-        if(!tableIdField.getText().isBlank()){
-            if(idNumbers.contains(tableIdField.getText())){
-                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
-            }else{
-                idNumbers.add(tableIdField.getText());
-                
-                String idNumber = tableIdField.getText();
-                int diameter = Integer.valueOf(tableDiameterField.getValue().toString());
-                
-                
-                WoodType wood = WoodType.valueOf(tableTypeOfWoodField.getItemAt(tableTypeOfWoodField.getSelectedIndex()));
-                int quantity = tableQuantityField.getSelectedIndex()+1;
-                baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
-               
-                Table table = new Table(idNumber, wood, quantity, base, diameter);
-                basket.addToBasket(table);
-                
-                
-                System.out.println("the following items are in the basket " );
-                basket.createSummary();
-                //how to reference an anonymous class? should the default list model go into the furniture class?
-                //dm.addElement(Table);
-                totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
+        if (!basket.isFull()) {
+            if (!tableIdField.getText().isBlank()) {
+                if (idNumbers.contains(tableIdField.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
+                } else {
+                    idNumbers.add(tableIdField.getText());
+
+                    String idNumber = tableIdField.getText();
+                    int diameter = Integer.valueOf(tableDiameterField.getValue().toString());
+
+                    WoodType wood = WoodType.valueOf(tableTypeOfWoodField.getItemAt(tableTypeOfWoodField.getSelectedIndex()));
+                    int quantity = tableQuantityField.getSelectedIndex() + 1;
+                    baseType base = baseType.valueOf(tableBaseTypeField.getItemAt(tableBaseTypeField.getSelectedIndex()));
+
+                    Table table = new Table(idNumber, wood, quantity, base, diameter);
+                    basket.addToBasket(table);
+
+                    System.out.println("the following items are in the basket ");
+                    basket.createSummary();
+                    //how to reference an anonymous class? should the default list model go into the furniture class?
+                    //dm.addElement(Table);
+                    totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
             }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "The basket is full");
         }
-                
-         
     }//GEN-LAST:event_addTabletoBasketBtnActionPerformed
 
     private void addDesktoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDesktoBasketBtnActionPerformed
         // TODO add your handling code here:
-        if (!deskIdField.getText().isBlank()){
-            if (idNumbers.contains(deskIdField.getText())){
-                JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
-            }else {
-                idNumbers.add(deskIdField.getText());
-                
-                String idNumber = deskIdField.getText();
-                WoodType wood = WoodType.valueOf(deskTypeOfWoodField.getItemAt(deskTypeOfWoodField.getSelectedIndex()));
-                int quantity = deskQuantityField.getSelectedIndex()+1;
-                int width = Integer.valueOf(deskWidthField.getValue().toString());
-                int depth  = Integer.valueOf(deskWidthField.getValue().toString());
-                
-               
-                
-                int drawers = drawersField.getSelectedIndex()+1;
-                
-                Desk desk = new Desk(idNumber, wood, quantity, width, depth, drawers );
-                System.out.println(desk.calculatePrice());
-                basket.addToBasket(desk);
-                
-                System.out.println("the following items are in the basket " );
-                basket.createSummary();
-                
-                dm.addElement(desk);
-                totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
-  
+        if (!basket.isFull()) {
+            if (!deskIdField.getText().isBlank()) {
+                if (idNumbers.contains(deskIdField.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "That ID number is already in use");
+                } else {
+                    idNumbers.add(deskIdField.getText());
+
+                    String idNumber = deskIdField.getText();
+                    WoodType wood = WoodType.valueOf(deskTypeOfWoodField.getItemAt(deskTypeOfWoodField.getSelectedIndex()));
+                    int quantity = deskQuantityField.getSelectedIndex() + 1;
+                    int width = Integer.valueOf(deskWidthField.getValue().toString());
+                    int depth = Integer.valueOf(deskWidthField.getValue().toString());
+
+                    int drawers = drawersField.getSelectedIndex() + 1;
+
+                    Desk desk = new Desk(idNumber, wood, quantity, width, depth, drawers);
+                    System.out.println(desk.calculatePrice());
+                    basket.addToBasket(desk);
+
+                    System.out.println("the following items are in the basket ");
+                    basket.createSummary();
+
+                    dm.addElement(desk);
+                    totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+               }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
             }
-        }else {
-            JOptionPane.showMessageDialog(rootPane, "Id Field must be 4 digits long");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "The basket is full");
         }
     }//GEN-LAST:event_addDesktoBasketBtnActionPerformed
 
     private void loadBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBasketBtnActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
-        
+
         fileChooser.setCurrentDirectory(new File("."));
-        
+
         int a = fileChooser.showOpenDialog(null);
-        if(a == JFileChooser.APPROVE_OPTION){
-            
+        if (a == JFileChooser.APPROVE_OPTION) {
+
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-            
+
             basket.emptyBasket();
             dm.clear();
             //add the loaded basket into the empty basket
             basket = basket.loadBasket(file);
             //iterate over the new basket and add the furniture objects into the list model so they can be rendered
-            for(int i = 0; i < basket.getBasketItems().size(); i++){
+            for (int i = 0; i < basket.getBasketItems().size(); i++) {
                 Furniture furniture = basket.getBasketItems().get(i);
                 dm.addElement(furniture);
-                
+
             }
             System.out.println("the new basket is ");
             basket.createSummary();
-            totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
-            
+            totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+
         }
     }//GEN-LAST:event_loadBasketBtnActionPerformed
 
     private void clearBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBasketBtnActionPerformed
         // TODO add your handling code here:
         int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to clear the basket?");
-        if(dialog == JOptionPane.YES_OPTION){
-             basket.emptyBasket();
-             dm.clear();
-             idNumbers.clear();
-             System.out.println("the current basket after clearing is");
-             basket.createSummary();
-             totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
-        } 
+        if (dialog == JOptionPane.YES_OPTION) {
+            basket.emptyBasket();
+            dm.clear();
+            idNumbers.clear();
+            System.out.println("the current basket after clearing is");
+            basket.createSummary();
+            totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+        }
     }//GEN-LAST:event_clearBasketBtnActionPerformed
 
     private void saveBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBasketBtnActionPerformed
         // TODO add your handling code here:
-        if (basket.getBasketItems().isEmpty()){
+        if (basket.getBasketItems().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Basket is empty, their are no items to save");
-        }else {
+        } else {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("."));
             int a = fileChooser.showSaveDialog(null);
-            if (a == JFileChooser.APPROVE_OPTION){
+            if (a == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                basket.saveBasket(file);  
-            } 
-        } 
+                basket.saveBasket(file);
+            }
+        }
     }//GEN-LAST:event_saveBasketBtnActionPerformed
 
     private void basketGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_basketGridMouseClicked
-        // TODO add your handling code here:
-        
-        if(SwingUtilities.isRightMouseButton(evt)){
+        // TODO add your handling code here: 
+        if (SwingUtilities.isRightMouseButton(evt)) {
             int index = basketGrid.locationToIndex(evt.getPoint());
             System.out.println(index + "this is the index of the mouse");
-            if(index >=0){
+            if (index >= 0) {
                 int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to remove this item from the basket");
-                if(dialog == JOptionPane.YES_OPTION){
+                if (dialog == JOptionPane.YES_OPTION) {
                     Furniture item = basketGrid.getModel().getElementAt(index);
                     basket.removeBasketItem(item);
                     dm.removeElement(item);
                     System.out.println("the new basket is:");
-                    basket.createSummary();  
-                    totalPriceLabel.setText("£"+String.valueOf((float)basket.calculateTotal()/100)); 
-                }   
+                    basket.createSummary();
+                    totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+                }
             }
         }//once an items is in the basket, the index no longer shows less than 0?
-          
-        if(SwingUtilities.isLeftMouseButton(evt)){
+        if (SwingUtilities.isLeftMouseButton(evt)) {
             JOptionPane.showMessageDialog(rootPane, basketGrid.getSelectedValue());
             System.out.println(basketGrid.getSelectedValue());
-            System.out.println(basketGrid.getSelectedValue());
-           
-        }if(SwingUtilities.isMiddleMouseButton(evt)){
+        }
+        if (SwingUtilities.isMiddleMouseButton(evt)) {
             System.out.println("middle mouse clicked");
             int index = basketGrid.locationToIndex(evt.getPoint());
-            if(index >= 0 ){
+            if (index >= 0) {
                 int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to edit this item");
-                if(dialog == JOptionPane.YES_OPTION){
-                    
+                if (dialog == JOptionPane.YES_OPTION) {
+
                     Furniture item = basketGrid.getModel().getElementAt(index);
                     jTabbedPane1.setSelectedIndex(getTabbedIndex(item));
                     JOptionPane.showMessageDialog(rootPane, "enter the new details to be updated");
-     
-                }     
+                }
             }
-        }
-       
+        }   
     }//GEN-LAST:event_basketGridMouseClicked
 
     private void updateChairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateChairBtnActionPerformed

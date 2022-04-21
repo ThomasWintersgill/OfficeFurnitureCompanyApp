@@ -22,7 +22,7 @@ import java.util.Collections;
 public class Basket implements Serializable {
     
     private int totalPrice;
-    //should change the name of this list to basket items?
+    
     private ArrayList<Furniture> basketItems = new ArrayList<>();
             
     public void basket(){
@@ -47,58 +47,61 @@ public class Basket implements Serializable {
     
     public int calculateTotal(){
         totalPrice = 0;
-        for(int i =0; i < basketItems.size(); i++){
+        for (int i = 0; i < basketItems.size(); i++) {
             Furniture furniture = basketItems.get(i);
             totalPrice += furniture.getItemPrice();
-            
         }
-        return totalPrice ;
+        return totalPrice;
     }
     
     //only prints the to string method at the moment
     public void createSummary(){
         Collections.sort(basketItems);
         this.printBasket();
-  
+
+    }
+    
+    public boolean isFull(){
+        return basketItems.size() >= 9;
     }
     
     //just for testing purposes, but the create summary will be similar
     public void printBasket(){
-         for(int i =0; i < basketItems.size(); i++){
-             Furniture furniture = basketItems.get(i);
-             System.out.println(furniture.toString());
-         }   
+        for (int i = 0; i < basketItems.size(); i++) {
+            Furniture furniture = basketItems.get(i);
+            System.out.println(furniture.toString());
+        }
     }
     
     public void saveBasket(File FileName){
-        try{
+        try {
             FileOutputStream fileOut = new FileOutputStream(FileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            
+
             out.writeObject(this);
             out.close();
-            fileOut.close();  
-        }catch(FileNotFoundException e){
+            fileOut.close();
+        } catch (FileNotFoundException e) {
             System.out.println("that is not a valid file name");
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
     public Basket loadBasket(File FileName){
         Basket b = null;
-        
-        try{
+
+        try {
             FileInputStream fileIn = new FileInputStream(FileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            b = (Basket)in.readObject();
+            b = (Basket) in.readObject();
             in.close();
             fileIn.close();
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("invalid file name");
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        }catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.println("sorry that file is not valid");
         }
         return b;
