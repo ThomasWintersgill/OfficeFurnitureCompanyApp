@@ -75,7 +75,7 @@ public abstract class Furniture implements Serializable, Comparable<Furniture>{
  
     @Override
     public String toString() {
-        return "Furniture{" + "IdNumber=" + IdNumber + ", typeOfWood=" + typeOfWood + ", itemPrice=" + itemPrice + ", quantity=" + quantity + ", image=" + image + " ,";
+        return this.getClassName() + "{" + "IdNumber=" + IdNumber + ", typeOfWood=" + typeOfWood + ", itemPrice=" + itemPrice + ", quantity=" + quantity+" ";
     }
 
     @Override

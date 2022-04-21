@@ -154,10 +154,10 @@ public class Main extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
+            .addGap(0, 48, Short.MAX_VALUE)
         );
 
-        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 70));
+        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 50));
 
         buttonPanel.setBackground(new java.awt.Color(255, 204, 204));
         buttonPanel.setBorder(new javax.swing.border.MatteBorder(null));
@@ -979,7 +979,7 @@ public class Main extends javax.swing.JFrame {
             if(index >= 0 ){
                 int dialog = JOptionPane.showConfirmDialog(rootPane, "are you sure you want to edit this item");
                 if(dialog == JOptionPane.YES_OPTION){
-                    //maybe able to solve this, just re insert a new item at the same index?
+                    
                     Furniture item = basketGrid.getModel().getElementAt(index);
                     jTabbedPane1.setSelectedIndex(getTabbedIndex(item));
                     JOptionPane.showMessageDialog(rootPane, "enter the new details to be updated");
@@ -992,6 +992,7 @@ public class Main extends javax.swing.JFrame {
 
     private void updateChairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateChairBtnActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_updateChairBtnActionPerformed
    
     /**
