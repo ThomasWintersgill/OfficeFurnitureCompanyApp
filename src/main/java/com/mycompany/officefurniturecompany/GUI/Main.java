@@ -40,7 +40,7 @@ public class Main extends javax.swing.JFrame {
     }
 
    
-    /*Takes in furniture item and returns the index of the tabbed pane that
+    /*Takes furniture item and returns the index of the tabbed pane that
     corresponds to that item*/
     public static int getTabbedIndex(Furniture item) {
         //take in furniture item and return the required tabbedPane index
@@ -734,7 +734,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showSummaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSummaryButtonActionPerformed
-        // TODO add your handling code here:
+        //Pop up informs user that summary has been output, felt this was neccessary as the output is in the console.
         JOptionPane.showMessageDialog(rootPane, "Summary has been ouput to the console");
         System.out.println("SUMMARY:");
         basket.createSummary();
@@ -746,7 +746,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_addChairButtonActionPerformed
 
     private void addChairtoBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addChairtoBasketBtnActionPerformed
-       //this currently works but not if the box is left blank before the first press
+
         if (!basket.isFull()) {
             if (!chairIdField.getText().isBlank()) {
                 if (idNumbers.contains(chairIdField.getText())) {
@@ -780,6 +780,7 @@ public class Main extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "The basket is full");
+            basket.emptyBasket();
         }
 
 
@@ -903,21 +904,36 @@ public class Main extends javax.swing.JFrame {
 
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
 
-            basket.emptyBasket();
-            dm.clear();
-            //add the loaded basket into the empty basket
-            basket = basket.loadBasket(file);
-            //iterate over the new basket and add the furniture objects into the list model so they can be rendered
-            for (int i = 0; i < basket.getBasketItems().size(); i++) {
-                Furniture furniture = basket.getBasketItems().get(i);
-                dm.addElement(furniture);
+            // need to do some checks hear, if wrong file type then basket becomes null and the rest of the program wont work
+            System.out.println("absket before load is" + basket);
+
+            Basket tempBasket = new Basket();
+            tempBasket = tempBasket.loadBasket(file);
+
+            if (!tempBasket.isEmpty()) {
+                basket = tempBasket;
+                System.out.println(basket);
+                dm.clear();
+
+                //iterate over the new basket and add the furniture objects into the list model so they can be rendered
+                for (int i = 0; i < basket.getBasketItems().size(); i++) {
+                    Furniture furniture = basket.getBasketItems().get(i);
+                    dm.addElement(furniture);
+                }
+                System.out.println("the new basket is ");
+                basket.createSummary();
+                totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
+
+                Basket basket = new Basket();
+                System.out.println(basket);
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "That file does not contain and basket products, try again");
 
             }
-            System.out.println("the new basket is ");
-            basket.createSummary();
-            totalPriceLabel.setText("£" + String.valueOf((float) basket.calculateTotal() / 100));
 
         }
+
     }//GEN-LAST:event_loadBasketBtnActionPerformed
 
     private void clearBasketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBasketBtnActionPerformed
