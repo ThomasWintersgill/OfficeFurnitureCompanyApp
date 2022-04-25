@@ -7,14 +7,6 @@
         <Property name="text" type="java.lang.String" value="label1"/>
       </Properties>
     </Component>
-    <Component class="com.mycompany.officefurniturecompany.GUI.totalPricePanel" name="totalPricePanel1">
-    </Component>
-    <Component class="com.mycompany.officefurniturecompany.GUI.totalPricePanel" name="totalPricePanel2">
-    </Component>
-    <Component class="com.mycompany.officefurniturecompany.GUI.totalPricePanel" name="totalPricePanel3">
-    </Component>
-    <Component class="com.mycompany.officefurniturecompany.GUI.totalPricePanel" name="totalPricePanel4">
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>

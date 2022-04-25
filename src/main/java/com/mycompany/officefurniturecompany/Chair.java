@@ -4,21 +4,16 @@
  */
 package com.mycompany.officefurniturecompany;
 
-
-
 /**
  *
  * @author thoma
  */
 public class Chair extends Furniture {
+
     private boolean hasArmrests;
     private final int ARMREST_UNITS = 250;
     private final int CHAIR_UNITS = 1625;
     private String image = "chair.jpg";
-
-    public Chair() {
-
-    }
 
     public Chair(String IdNumber, WoodType typeOfWood, int quantity, boolean hasArmrests) {
         super(IdNumber, typeOfWood, quantity);
@@ -54,5 +49,5 @@ public class Chair extends Furniture {
         return itemPrice;
 
     }
-    
+
 }

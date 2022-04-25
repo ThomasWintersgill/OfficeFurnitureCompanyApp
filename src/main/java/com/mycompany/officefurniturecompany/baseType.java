@@ -8,7 +8,7 @@ package com.mycompany.officefurniturecompany;
  *
  * @author thoma
  */
-//Stores price of the different base types in pence.
+//Price of each base stored as pence.
 public enum baseType {
     CHROME(3500), WOODEN(4500);
 

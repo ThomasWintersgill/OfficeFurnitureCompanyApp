@@ -70,5 +70,5 @@ public class Desk extends Furniture {
         return itemPrice;
 
     }
- 
+
 }

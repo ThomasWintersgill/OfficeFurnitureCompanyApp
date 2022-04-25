@@ -8,7 +8,7 @@ package com.mycompany.officefurniturecompany;
  *
  * @author thoma
  */
-//stores price of each woodtype in pence per unit.
+//Price of each wood stored as pence.
 public enum WoodType {
     WALNUT(3), OAK(4);
 
@@ -23,6 +23,4 @@ public enum WoodType {
 
     }
 
-    //needs get price method,, this way can call, the get price method, if changes ever needed to be made would just be made within the enum class
-    //also wouldnt need the if statments in the calculate prices just go this.typeOfWodd.getValuie
 }

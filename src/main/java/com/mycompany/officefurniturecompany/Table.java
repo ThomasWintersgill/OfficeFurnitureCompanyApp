@@ -9,6 +9,7 @@ package com.mycompany.officefurniturecompany;
  * @author thoma
  */
 public class Table extends Furniture {
+
     private baseType baseType;
     private int diameter;
     private String image = "table.jpg";
@@ -17,6 +18,7 @@ public class Table extends Furniture {
         super(IdNumber, typeOfWood, quantity);
         this.baseType = baseType;
         this.diameter = diameter;
+        //Price is calculated upon creation of product.
         this.calculatePrice();
     }
 

@@ -17,39 +17,27 @@ import javax.swing.ListCellRenderer;
  */
 public class basketRenderer extends DefaultListCellRenderer implements ListCellRenderer<Object> {
 
-    
-    //maybe this needs adjusting to render the basket as opposed to furniture items??
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        
+
         Furniture furniture = (Furniture) value;
-        
-        
-        
+
         ImageIcon icon = new ImageIcon(furniture.getImage());
-        
-        
-        //setText(furniture.getIdNumber());
+
         setIcon(icon);
-        
-       
-        //setIcon(icon);
-        
-        
-        if(isSelected){
+
+        if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
-        }else{
+        } else {
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
         setEnabled(true);
         setFont(list.getFont());
-        
-        return this;
-        
 
-    
+        return this;
+
     }
-    
+
 }

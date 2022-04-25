@@ -39,7 +39,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
     }
 
-    // your own methods here
+   
     /*Takes in furniture item and returns the index of the tabbed pane that
     corresponds to that item*/
     public static int getTabbedIndex(Furniture item) {
@@ -69,10 +69,6 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         label1 = new java.awt.Label();
-        totalPricePanel1 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
-        totalPricePanel2 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
-        totalPricePanel3 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
-        totalPricePanel4 = new com.mycompany.officefurniturecompany.GUI.totalPricePanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         buttonPanel = new javax.swing.JPanel();
@@ -1094,10 +1090,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tableTypeOfWoodField;
     private javax.swing.JLabel totalPriceLabel;
     private javax.swing.JPanel totalPricePanel;
-    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel1;
-    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel2;
-    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel3;
-    private com.mycompany.officefurniturecompany.GUI.totalPricePanel totalPricePanel4;
     private javax.swing.JButton updateChairBtn;
     // End of variables declaration//GEN-END:variables
 }
