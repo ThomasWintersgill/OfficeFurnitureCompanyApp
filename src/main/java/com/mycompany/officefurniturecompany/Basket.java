@@ -94,7 +94,10 @@ public class Basket implements Serializable {
         }
     }
     
-    //Takes in a file and attempts to load a basket item from it.
+    /*Takes in a file and attempts to load a basket item from it
+    if unsuccesful then a new empty basket is created as returning as
+    a new basket cannot be null.
+    */
     public Basket loadBasket(File FileName){
         Basket b = null;
 
