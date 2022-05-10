@@ -56,7 +56,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="1210" height="50"/>
+              <AbsoluteConstraints x="0" y="0" width="1210" height="70"/>
             </Constraint>
           </Constraints>
 
@@ -68,7 +68,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -253,6 +253,7 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   <Component id="deskPicPanel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="346" pref="366" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
@@ -280,7 +281,7 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="drawersField" pref="82" max="32767" attributes="0"/>
+                                              <Component id="drawersField" max="32767" attributes="0"/>
                                               <Component id="deskQuantityField" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -329,7 +330,7 @@
                                   <EmptySpace pref="43" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                                  <EmptySpace pref="12" max="32767" attributes="0"/>
                                   <Component id="addDesktoBasketBtn" min="-2" pref="58" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
@@ -341,6 +342,9 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="deskPicPanel">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[329, 280]"/>
                     </Property>
@@ -349,20 +353,33 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="deskPicLabel" alignment="0" pref="329" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="deskPicLabel" pref="301" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="deskPicLabel" alignment="0" pref="280" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="deskPicLabel" pref="268" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="deskPicLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="desk pic here"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="deskPicLabel.setIcon(new javax.swing.ImageIcon(&quot;desk.jpg&quot;));"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -521,33 +538,40 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel7" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="jLabel9" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="tableTypeOfWoodField" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel7" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="tableIdField" min="-2" pref="165" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="tableTypeOfWoodField" min="-2" pref="165" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="tableIdField" min="-2" pref="165" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="tableBaseTypeField" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel10" min="-2" pref="83" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Component id="tableBaseTypeField" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel10" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="addTabletoBasketBtn" pref="159" max="32767" attributes="0"/>
+                                      <Component id="tableQuantityField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tableDiameterField" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace pref="90" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="tablePicPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tablePicPanel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="75" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="addTabletoBasketBtn" pref="159" max="32767" attributes="0"/>
-                              <Component id="tableQuantityField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tableDiameterField" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="90" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -584,7 +608,7 @@
                               <Component id="tableBaseTypeField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
                           <Component id="addTabletoBasketBtn" min="-2" pref="58" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       </Group>
@@ -594,6 +618,9 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="tablePicPanel">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[329, 280]"/>
                     </Property>
@@ -607,15 +634,24 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel16" alignment="1" pref="280" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel16" pref="268" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel16"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jLabel16.setBackground(new java.awt.Color(255, 255, 255));&#xa;jLabel16.setIcon(new javax.swing.ImageIcon(&quot;table.jpg&quot;));"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -782,7 +818,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="chairQuantityField" min="-2" pref="148" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="chairPicPanel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chairPicPanel" min="-2" pref="288" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel3" min="-2" pref="121" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
@@ -818,7 +854,7 @@
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="armRestsBox" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="addChairtoBasketBtn" pref="58" max="32767" attributes="0"/>
                               <Component id="updateChairBtn" max="32767" attributes="0"/>
@@ -839,7 +875,10 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel17" alignment="1" pref="288" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel17" min="-2" pref="306" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -851,8 +890,13 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel17"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel17.setIcon(new javax.swing.ImageIcon(&quot;chair.jpg&quot;));"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
